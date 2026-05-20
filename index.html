@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gulf of California Temperature Storymap</title>
+  <meta name="description" content="A data storymap showing recent Gulf of California sea-surface temperature anomalies, seasonal risk, and comparison with recent El Nino peaks.">
+  <meta property="og:title" content="Gulf of California Temperature Storymap">
+  <meta property="og:description" content="NOAA OISST-based Gulf of California temperature trends, anomalies, and seasonal context for public sharing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fabbiologia.github.io/goc-climate-change/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --bg: #f4f7f8;
+      --ink: #17232e;
+      --muted: #617181;
+      --line: #d8e1e7;
+      --panel: #ffffff;
+      --ocean: #087f7a;
+      --ocean-dark: #075e66;
+      --heat: #d65a31;
+      --hot: #aa263f;
+      --gold: #d38a00;
+      --blue: #dceff1;
+      --shadow: 0 1px 2px rgba(23, 35, 46, .08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    .hero {
+      padding: 0 18px 46px;
+      background: #eef5f6;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-copy {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 54px 0 24px;
+    }
+    .eyebrow {
+      color: var(--ocean-dark);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 10px 0 16px;
+      max-width: 930px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: .98;
+      font-weight: 820;
+      letter-spacing: 0;
+    }
+    .hero-sub {
+      max-width: 760px;
+      font-size: clamp(18px, 2.2vw, 25px);
+      color: #293945;
+    }
+    .hero-chart-panel {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+      border: 1px solid rgba(8, 127, 122, .24);
+      border-radius: 8px;
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+    }
+    #heroChart {
+      width: 100%;
+      height: 430px;
+      overflow: hidden;
+    }
+    .metric-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .metric {
+      min-width: 190px;
+      padding: 12px 14px;
+      border: 1px solid rgba(8, 127, 122, .28);
+      border-radius: 8px;
+      background: rgba(255,255,255,.76);
+      backdrop-filter: blur(8px);
+    }
+    .metric .k {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .metric .v {
+      margin-top: 6px;
+      font-size: 27px;
+      font-weight: 820;
+      color: var(--ocean-dark);
+    }
+    .metric.hot .v { color: var(--hot); }
+    .wrap {
+      width: min(1180px, calc(100vw - 36px));
+      margin: 0 auto;
+    }
+    .story {
+      display: grid;
+      grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr);
+      gap: 34px;
+      align-items: center;
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .story h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .story p {
+      margin: 0 0 14px;
+      color: #344653;
+      font-size: 17px;
+    }
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--heat);
+      background: #fff;
+      box-shadow: var(--shadow);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .chart-panel {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+      color: #263642;
+      font-size: 14px;
+      font-weight: 780;
+    }
+    .chart-note {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 520;
+    }
+    .chart {
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+    }
+    .short-chart { height: 320px; }
+    svg { display: block; width: 100%; height: 100%; }
+    .axis { fill: var(--muted); font-size: 12px; }
+    .gridline { stroke: #edf2f5; stroke-width: 1; }
+    .zero { stroke: #96a9b3; stroke-dasharray: 4 4; }
+    .line-main { fill: none; stroke: var(--ocean); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .line-thin { fill: none; stroke: rgba(8,127,122,.35); stroke-width: 1.4; }
+    .trend-line { fill: none; stroke: var(--heat); stroke-width: 2.5; stroke-linecap: round; }
+    .hot-line { fill: none; stroke: var(--hot); stroke-width: 3; stroke-linecap: round; }
+    .band { fill: rgba(8, 127, 122, .12); }
+    .bar { fill: var(--ocean); }
+    .bar-hot { fill: var(--hot); }
+    .bar-gold { fill: var(--gold); }
+    .bar-muted { fill: #afc2c9; }
+    .label-strong { fill: var(--ink); font-weight: 780; font-size: 13px; }
+    .annotation { fill: #253642; font-size: 14px; font-weight: 760; }
+    .annotation-small { fill: var(--muted); font-size: 12px; }
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .swatch {
+      display: inline-block;
+      width: 18px;
+      height: 3px;
+      margin-right: 6px;
+      vertical-align: middle;
+      border-radius: 999px;
+      background: var(--ocean);
+    }
+    .swatch.hot { background: var(--hot); }
+    .swatch.heat { background: var(--heat); }
+    .source {
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .story { grid-template-columns: 1fr; padding: 46px 0; }
+      .chart { height: 330px; }
+      .hero { padding: 0 18px 34px; }
+      #heroChart { height: 340px; }
+      .metric { min-width: calc(50% - 8px); }
+    }
+    @media (max-width: 560px) {
+      .metric { min-width: 100%; }
+      .chart-panel { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Gulf of California SST | NOAA OISST v2.1</div>
+      <h1>The Gulf is entering summer already hot.</h1>
+      <div class="hero-sub" id="heroSub"></div>
+      <div class="metric-row">
+        <div class="metric"><div class="k">Latest Gulf Sample</div><div class="v" id="mLatest"></div></div>
+        <div class="metric hot"><div class="k">Above April Baseline</div><div class="v" id="mAnomaly"></div></div>
+        <div class="metric"><div class="k">April Rank</div><div class="v" id="mRank"></div></div>
+      </div>
+    </div>
+    <div class="hero-chart-panel">
+      <div class="chart-title"><span>Monthly SST anomaly across the Gulf of California</span><span class="chart-note">deg C vs monthly climatology, 1981-2026</span></div>
+      <div class="legend"><span><span class="swatch"></span>Monthly anomaly</span><span><span class="swatch hot"></span>April 2026</span><span><span class="swatch heat"></span>2023-24 El Niño window</span></div>
+      <div id="heroChart"></div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section class="story">
+      <div>
+        <div class="eyebrow">1. Spring Signal</div>
+        <h2>April 2026 is not normal spring warming.</h2>
+        <p id="aprilText"></p>
+        <p>The comparison is month-for-month: April against other Aprils. That removes the obvious summer cycle and leaves a clean early-season signal.</p>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title"><span>Warmest Aprils in the Gulf sample</span><span class="chart-note">monthly mean SST</span></div>
+        <div class="chart short-chart" id="aprilChart"></div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div>
+        <div class="eyebrow">2. El Niño Context</div>
+        <h2>The 2026 anomaly already exceeds the last El Niño anomaly.</h2>
+        <p id="anomalyText"></p>
+        <div class="callout" id="anomalyCallout"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title"><span>Monthly anomaly since 2020</span><span class="chart-note">relative to monthly climatology</span></div>
+        <div class="chart" id="anomalyChart"></div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div>
+        <div class="eyebrow">3. Seasonal Ramp</div>
+        <h2>The risk is what happens next.</h2>
+        <p id="scenarioText"></p>
+        <p>This is a scenario, not a forecast. It asks a simple question: what if the Gulf follows the median April-to-peak seasonal climb observed during the last ten complete years?</p>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title"><span>2026 seasonal scenario vs El Niño peaks</span><span class="chart-note">Gulf sampled monthly SST</span></div>
+        <div class="chart short-chart" id="scenarioChart"></div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div>
+        <div class="eyebrow">4. Long View</div>
+        <h2>A warmer baseline makes extremes easier to reach.</h2>
+        <p id="trendText"></p>
+        <p>The last decade keeps the focus on recent conditions: recurring hot late summers, the 2023-24 El Niño period, and the unusually warm start to 2026.</p>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title"><span>Monthly SST record</span><span class="chart-note">last decade, 2016-2026</span></div>
+        <div class="legend"><span><span class="swatch"></span>Monthly SST</span><span><span class="swatch heat"></span>Linear trend</span><span><span class="swatch hot"></span>2026</span></div>
+        <div class="chart" id="timelineChart"></div>
+      </div>
+    </section>
+
+    <section class="source" id="sourceText"></section>
+  </main>
+
+  <script src="temperature_storymap_data.js"></script>
+  <script>
+    const DATA = window.TEMPERATURE_STORYMAP_DATA;
+    if (!DATA) {
+      document.body.innerHTML = "<div style='padding:24px;font-family:sans-serif'>temperature_storymap_data.js was not found. Run build_temperature_storymap_data.py.</div>";
+    } else {
+      boot();
+    }
+
+    function boot() {
+      const M = DATA.metrics;
+      document.getElementById("heroSub").textContent =
+        `${M.latest_month} averaged ${fmt(M.latest_observed)} °C across the Gulf-only station sample, ${signed(M.latest_anomaly)} °C above the April climatology.`;
+      document.getElementById("mLatest").textContent = `${fmt(M.latest_observed)} °C`;
+      document.getElementById("mAnomaly").textContent = `${signed(M.latest_anomaly)} °C`;
+      document.getElementById("mRank").textContent = `#${M.april_count} of ${M.april_count}`;
+      document.getElementById("aprilText").textContent =
+        `April 2026 is the warmest April in the ${M.april_count}-April record. It is ${fmt(M.latest_observed - M.previous_april_record)} °C warmer than the previous April record (${M.previous_april_record_month}).`;
+      document.getElementById("anomalyText").textContent =
+        `During the ${M.last_el_nino_label}, the largest Gulf anomaly in this sample was ${fmt(M.last_el_nino_peak_anomaly)} °C in ${M.last_el_nino_peak_anomaly_month}. April 2026 is already ${fmt(M.latest_anomaly - M.last_el_nino_peak_anomaly)} °C higher than that anomaly.`;
+      document.getElementById("anomalyCallout").textContent =
+        `The strongest anomaly in the full local record is now ${M.latest_month}: ${signed(M.latest_anomaly)} °C.`;
+      document.getElementById("scenarioText").textContent =
+        `From 2016-2025, the median rise from April to each year's warmest month was ${fmt(M.median_april_to_peak_increase)} °C. Applied to April 2026, that seasonal scenario reaches ${fmt(M.projected_peak)} °C, about ${fmt(M.projected_vs_last_el_nino)} °C above the ${M.last_el_nino_label} warm-season peak.`;
+      document.getElementById("trendText").textContent =
+        `Since 2016, the monthly record shows the Gulf repeatedly reaching about 30 °C in late summer. April 2026 stands out because it begins the warm season far above its monthly baseline.`;
+      document.getElementById("sourceText").textContent =
+        `Data: ${DATA.meta.source}, Gulf of California sampled station series, ${DATA.meta.coverage_start} to ${DATA.meta.coverage_end}. Scenario values are not forecasts.`;
+
+      drawHero();
+      drawAprilRanking();
+      drawAnomalyChart();
+      drawScenarioChart();
+      drawTimeline();
+    }
+
+    function drawHero() {
+      const rows = DATA.monthly.filter(row => row.anomaly != null);
+      const W = 1180, H = 430, L = 76, R = 40, T = 26, B = 58;
+      const scale = yScale(rows.map(row => row.anomaly).concat([0]), H, T, B);
+      const x = i => L + i * (W - L - R) / (rows.length - 1);
+      const zeroY = scale.y(0);
+      const line = path(rows.map((row, i) => [x(i), scale.y(row.anomaly)]));
+      const latestIdx = rows.length - 1;
+      const latest = rows[latestIdx];
+      const elStart = rows.findIndex(row => row.month === "2023-05");
+      const elEnd = rows.findIndex(row => row.month === "2024-05");
+      const yTicks = ticks(scale.min, scale.max, 6);
+      const yearTicks = [1982, 1990, 1998, 2006, 2014, 2022, 2026]
+        .map(year => rows.findIndex(row => row.month.startsWith(String(year))))
+        .filter(index => index >= 0);
+      const positive = rows.map((row, i) => [x(i), scale.y(Math.max(row.anomaly, 0))]);
+      const area = path(positive) + `L${x(latestIdx).toFixed(2)},${zeroY.toFixed(2)}L${x(0).toFixed(2)},${zeroY.toFixed(2)}Z`;
+      document.getElementById("heroChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img">
+        <rect width="${W}" height="${H}" fill="#ffffff"></rect>
+        ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-10}" y="${scale.y(v)+4}" text-anchor="end">${signed(v)}</text>`).join("")}
+        <text class="axis" x="18" y="${T+18}" transform="rotate(-90 18 ${T+18})">SST anomaly (°C)</text>
+        ${elStart >= 0 && elEnd >= 0 ? `<rect x="${x(elStart)}" y="${T}" width="${x(elEnd)-x(elStart)}" height="${H-T-B}" fill="rgba(211,138,0,.13)"></rect>
+          <text class="annotation-small" x="${x(elStart)+8}" y="${T+18}">2023-24 El Niño</text>` : ""}
+        <path d="${area}" fill="rgba(214,90,49,.15)"></path>
+        <line class="zero" x1="${L}" x2="${W-R}" y1="${zeroY}" y2="${zeroY}"></line>
+        <text class="annotation-small" x="${W-R-96}" y="${zeroY-8}">monthly baseline</text>
+        <path d="${line}" fill="none" stroke="#087f7a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="${x(latestIdx)}" cy="${scale.y(latest.anomaly)}" r="7" fill="#aa263f"></circle>
+        <path d="M${x(latestIdx)-7},${scale.y(latest.anomaly)+8} L${x(latestIdx)-92},${scale.y(latest.anomaly)+54}" stroke="#aa263f" stroke-width="1.5"></path>
+        <text class="annotation" x="${x(latestIdx)-286}" y="${scale.y(latest.anomaly)+66}">Apr 2026: ${signed(latest.anomaly)} °C</text>
+        <text class="annotation-small" x="${x(latestIdx)-286}" y="${scale.y(latest.anomaly)+85}">record monthly anomaly</text>
+        ${yearTicks.map(i => `<text class="axis" x="${x(i)}" y="${H-16}" text-anchor="middle">${rows[i].month.slice(0,4)}</text>`).join("")}
+      </svg>`;
+    }
+
+    function drawAprilRanking() {
+      const top = [...DATA.aprils].sort((a, b) => b.observed - a.observed).slice(0, 12).reverse();
+      const W = 800, H = 340, L = 72, R = 112, T = 20, B = 30;
+      const max = Math.max(...top.map(d => d.observed)) * 1.04;
+      const min = Math.min(...top.map(d => d.observed)) - .4;
+      const x = v => L + (v - min) * (W - L - R) / (max - min);
+      const gap = 7;
+      const bh = (H - T - B - gap * (top.length - 1)) / top.length;
+      const body = top.map((d, i) => {
+        const y = T + i * (bh + gap);
+        const hot = d.month === DATA.metrics.latest_month;
+        return `<text class="axis" x="${L-10}" y="${y+bh*.68}" text-anchor="end">${d.year}</text>
+          <rect class="${hot ? "bar-hot" : "bar"}" x="${L}" y="${y}" width="${x(d.observed)-L}" height="${bh}" rx="3"></rect>
+          <text class="label-strong" x="${W-R+10}" y="${y+bh*.68}">${fmt(d.observed)} °C</text>`;
+      }).join("");
+      document.getElementById("aprilChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}">${body}</svg>`;
+    }
+
+    function drawAnomalyChart() {
+      const rows = DATA.monthly.filter(row => row.month >= "2020-01" && row.anomaly != null);
+      const W = 860, H = 390, L = 78, R = 44, T = 26, B = 66;
+      const scale = yScale(rows.map(r => r.anomaly).concat([0]), H, T, B);
+      const base = scale.y(0);
+      const step = (W - L - R) / rows.length;
+      const bw = Math.max(2, step - 2);
+      const tickMonths = ["2020-01", "2022-01", "2024-01", DATA.metrics.latest_month];
+      const ticksX = tickMonths.map(month => rows.findIndex(row => row.month === month)).filter(index => index >= 0);
+      const yTicks = ticks(scale.min, scale.max, 5);
+      const bars = rows.map((row, i) => {
+        const x = L + i * step;
+        const y = scale.y(row.anomaly);
+        const hot = row.month === DATA.metrics.latest_month;
+        return `<rect class="${hot ? "bar-hot" : row.anomaly >= 0 ? "bar" : "bar-muted"}" x="${x}" y="${Math.min(y,base)}" width="${bw}" height="${Math.max(1,Math.abs(base-y))}" rx="2"></rect>`;
+      }).join("");
+      document.getElementById("anomalyChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}">
+        ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-8}" y="${scale.y(v)+4}" text-anchor="end">${signed(v)}</text>`).join("")}
+        <text class="axis" x="20" y="${T+18}" transform="rotate(-90 20 ${T+18})">Anomaly (°C)</text>
+        <line class="zero" x1="${L}" x2="${W-R}" y1="${base}" y2="${base}"></line>
+        ${bars}
+        ${ticksX.map(i => {
+          const label = rows[i].month === DATA.metrics.latest_month ? "Apr 2026" : rows[i].month.slice(0,4);
+          const anchor = i === rows.length - 1 ? "end" : "middle";
+          const dx = i === rows.length - 1 ? 10 : 0;
+          return `<text class="axis" x="${L+i*step+bw/2+dx}" y="${H-22}" text-anchor="${anchor}">${label}</text>`;
+        }).join("")}
+      </svg>`;
+    }
+
+    function drawScenarioChart() {
+      const M = DATA.metrics;
+      const bars = [
+        {label: "Apr 2026", value: M.latest_observed, cls: "bar-muted"},
+        {label: "2023-24 El Niño", value: M.last_el_nino_peak_observed, cls: "bar"},
+        {label: "2015-16 El Niño", value: M.strong_el_nino_peak_observed, cls: "bar-gold"},
+        {label: "2026 scenario", value: M.projected_peak, low: M.projected_low, high: M.projected_high, cls: "bar-hot"}
+      ];
+      const W = 800, H = 320, L = 146, R = 112, T = 30, B = 28;
+      const min = 22, max = Math.max(...bars.map(b => b.high || b.value)) + .6;
+      const x = v => L + (v - min) * (W - L - R) / (max - min);
+      const gap = 18, bh = 34;
+      const body = bars.map((d, i) => {
+        const y = T + i * (bh + gap);
+        const range = d.low ? `<line x1="${x(d.low)}" x2="${x(d.high)}" y1="${y+bh/2}" y2="${y+bh/2}" stroke="#aa263f" stroke-width="5" stroke-linecap="round"></line>` : "";
+        return `<text class="axis" x="${L-12}" y="${y+bh*.64}" text-anchor="end">${d.label}</text>
+          <rect class="${d.cls}" x="${L}" y="${y}" width="${x(d.value)-L}" height="${bh}" rx="4"></rect>
+          ${range}
+          <text class="label-strong" x="${W-R+10}" y="${y+bh*.64}">${fmt(d.value)} °C</text>`;
+      }).join("");
+      document.getElementById("scenarioChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}">${body}</svg>`;
+    }
+
+    function drawTimeline() {
+      const rows = DATA.monthly.filter(row => row.observed != null && row.month >= "2016-01");
+      const W = 840, H = 380, L = 70, R = 28, T = 24, B = 54;
+      const scale = yScale(rows.map(r => r.observed), H, T, B);
+      const x = i => L + i * (W - L - R) / (rows.length - 1);
+      const line = path(rows.map((row, i) => [x(i), scale.y(row.observed)]));
+      const trend = linearTrend(rows.map((row, i) => [i, row.observed]));
+      const trendPath = path(rows.map((row, i) => [x(i), scale.y(trend(i))]));
+      const recentRows = rows.filter(row => row.month >= "2026-01");
+      const recentStart = rows.findIndex(row => row.month === recentRows[0].month);
+      const recentPath = path(recentRows.map((row, i) => [x(recentStart+i), scale.y(row.observed)]));
+      const yTicks = ticks(scale.min, scale.max, 5);
+      const xTicks = tickIndexes(rows.length, 6);
+      const elStart = rows.findIndex(r => r.month === "2023-05");
+      const elEnd = rows.findIndex(r => r.month === "2024-05");
+      document.getElementById("timelineChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}">
+        ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-8}" y="${scale.y(v)+4}" text-anchor="end">${fmt(v)}</text>`).join("")}
+        ${elStart >= 0 && elEnd >= 0 ? `<rect x="${x(elStart)}" y="${T}" width="${x(elEnd)-x(elStart)}" height="${H-T-B}" fill="rgba(211,138,0,.12)"></rect>` : ""}
+        <path class="line-thin" d="${line}"></path>
+        <path class="trend-line" d="${trendPath}"></path>
+        <path class="hot-line" d="${recentPath}"></path>
+        ${xTicks.map(i => `<text class="axis" x="${x(i)}" y="${H-18}" text-anchor="middle">${rows[i].month.slice(0,4)}</text>`).join("")}
+      </svg>`;
+    }
+
+    function yScale(values, H, T, B) {
+      let min = Math.min(...values), max = Math.max(...values);
+      if (min === max) { min -= 1; max += 1; }
+      const pad = (max - min) * .08;
+      min -= pad; max += pad;
+      return {min, max, y: v => T + (max - v) * (H - T - B) / (max - min)};
+    }
+    function linearTrend(points) {
+      const mx = points.reduce((s,p)=>s+p[0],0)/points.length;
+      const my = points.reduce((s,p)=>s+p[1],0)/points.length;
+      const den = points.reduce((s,p)=>s+(p[0]-mx)**2,0);
+      const slope = points.reduce((s,p)=>s+(p[0]-mx)*(p[1]-my),0)/den;
+      return x => my + slope * (x - mx);
+    }
+    function tickIndexes(n, maxTicks) {
+      if (n <= maxTicks) return Array.from({length:n}, (_,i)=>i);
+      const out=[]; for (let i=0;i<maxTicks;i++) out.push(Math.round(i*(n-1)/(maxTicks-1)));
+      return [...new Set(out)];
+    }
+    function ticks(min, max, count) { return Array.from({length:count}, (_,i)=>min+(max-min)*i/(count-1)); }
+    function path(points) { return "M" + points.map(p => p.map(v => Number(v).toFixed(2)).join(",")).join("L"); }
+    function fmt(v) { return Number(v).toLocaleString(undefined, {maximumFractionDigits: 2}); }
+    function signed(v) { const n=Number(v); return `${n>0?"+":""}${fmt(n)}`; }
+  </script>
+</body>
+</html>
