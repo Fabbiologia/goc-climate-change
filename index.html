@@ -294,7 +294,7 @@
         <div class="callout" id="mhwCallout"></div>
       </div>
       <div class="chart-panel">
-        <div class="chart-title"><span>Daily SST against the marine heatwave threshold</span><span class="chart-note">red shading marks heatwave days</span></div>
+        <div class="chart-title"><span>Last year: daily SST against the marine heatwave threshold</span><span class="chart-note">red shading marks heatwave days</span></div>
         <div class="legend"><span><span class="swatch"></span>Daily SST</span><span><span class="swatch heat"></span>90th percentile threshold</span><span><span class="swatch hot"></span>Heatwave days</span></div>
         <div class="chart" id="mhwChart"></div>
       </div>
@@ -378,7 +378,9 @@
       const M = H.metrics;
       const active = M.latest_status === "active";
       document.getElementById("mhwText").textContent =
-        `Using a 1982-2011 daily baseline, the Gulf sample contains ${M.event_count} marine heatwave events since ${M.coverage_start}. The latest available day (${M.latest_date}) is ${active ? "inside" : "outside"} a marine heatwave, with SST ${fmt(M.latest_intensity_above_threshold)} °C ${active ? "above" : "relative to"} the threshold.`;
+        active
+          ? `Using a 1982-2011 daily baseline, the Gulf sample contains ${M.event_count} marine heatwave events since ${M.coverage_start}. The graph zooms into ${M.graph_start} to ${M.graph_end}, where the current event begins on ${M.current_event_start} and runs through the latest available day.`
+          : `Using a 1982-2011 daily baseline, the Gulf sample contains ${M.event_count} marine heatwave events since ${M.coverage_start}. The graph zooms into ${M.graph_start} to ${M.graph_end}, with red shading marking heatwave days in the last year.`;
       document.getElementById("mhwEvents").textContent = M.event_count;
       document.getElementById("mhwYearDays").textContent = `${M.latest_year_heatwave_days} days`;
       document.getElementById("mhwLast12").textContent = `${M.last_12_month_heatwave_days} days`;
@@ -386,10 +388,10 @@
       document.getElementById("mhwCallout").textContent = active
         ? `The current event began ${M.current_event_start} and spans ${M.current_event_days} days in the available record, peaking at +${fmt(M.current_event_peak)} °C above the seasonal baseline.`
         : `The strongest event so far ran ${M.strongest_event_start} to ${M.strongest_event_end}, accumulating ${fmt(M.strongest_event_cumulative)} °C-days of heat stress.`;
-      drawHeatwaveChart(H.daily_recent);
+      drawHeatwaveChart(H.daily_recent, M);
     }
 
-    function drawHeatwaveChart(rows) {
+    function drawHeatwaveChart(rows, metrics) {
       const W = 860, H = 390, L = 72, R = 36, T = 26, B = 62;
       const values = [];
       rows.forEach(row => { values.push(row.sst, row.thresh); });
@@ -405,13 +407,28 @@
       const sstLine = path(rows.map((row, i) => [x(i), scale.y(row.sst)]));
       const threshLine = path(rows.map((row, i) => [x(i), scale.y(row.thresh)]));
       const yTicks = ticks(scale.min, scale.max, 5);
-      const tickDates = ["2023-01-01", "2024-01-01", "2025-01-01", "2026-01-01", rows[rows.length - 1].date];
-      const xTicks = tickDates.map(date => rows.findIndex(row => row.date >= date)).filter(index => index >= 0);
+      const tickDates = [];
+      const cursor = new Date(`${rows[0].date.slice(0, 7)}-01T00:00:00Z`);
+      const end = new Date(`${rows[rows.length - 1].date}T00:00:00Z`);
+      while (cursor <= end) {
+        tickDates.push(cursor.toISOString().slice(0, 10));
+        cursor.setUTCMonth(cursor.getUTCMonth() + 3);
+      }
+      tickDates.push(rows[rows.length - 1].date);
+      const xTicks = [...new Set(tickDates.map(date => rows.findIndex(row => row.date >= date)).filter(index => index >= 0))];
+      const currentStartIdx = metrics.current_event_start
+        ? rows.findIndex(row => row.date >= metrics.current_event_start)
+        : -1;
+      const currentStart = currentStartIdx >= 0
+        ? `<line x1="${x(currentStartIdx)}" x2="${x(currentStartIdx)}" y1="${T}" y2="${H-B}" stroke="#aa263f" stroke-width="2" stroke-dasharray="5 5"></line>
+           <text class="annotation-small" x="${Math.min(W-R-8, x(currentStartIdx)+8)}" y="${T+18}" text-anchor="start">current event begins</text>`
+        : "";
       document.getElementById("mhwChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img">
         <rect width="${W}" height="${H}" fill="#ffffff"></rect>
         ${heat}
         ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-8}" y="${scale.y(v)+4}" text-anchor="end">${fmt(v)}</text>`).join("")}
         <text class="axis" x="20" y="${T+18}" transform="rotate(-90 20 ${T+18})">Daily SST (°C)</text>
+        ${currentStart}
         <path class="threshold-line" d="${threshLine}"></path>
         <path class="line-main" d="${sstLine}"></path>
         ${dots}
