@@ -351,16 +351,11 @@
         <rect width="${W}" height="${H}" fill="#ffffff"></rect>
         ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-10}" y="${scale.y(v)+4}" text-anchor="end">${signed(v)}</text>`).join("")}
         <text class="axis" x="18" y="${T+18}" transform="rotate(-90 18 ${T+18})">SST anomaly (°C)</text>
-        ${elStart >= 0 && elEnd >= 0 ? `<rect x="${x(elStart)}" y="${T}" width="${x(elEnd)-x(elStart)}" height="${H-T-B}" fill="rgba(211,138,0,.13)"></rect>
-          <text class="annotation-small" x="${x(elStart)+8}" y="${T+18}">2023-24 El Niño</text>` : ""}
+        ${elStart >= 0 && elEnd >= 0 ? `<rect x="${x(elStart)}" y="${T}" width="${x(elEnd)-x(elStart)}" height="${H-T-B}" fill="rgba(211,138,0,.13)"></rect>` : ""}
         <path d="${area}" fill="rgba(214,90,49,.15)"></path>
         <line class="zero" x1="${L}" x2="${W-R}" y1="${zeroY}" y2="${zeroY}"></line>
-        <text class="annotation-small" x="${W-R-96}" y="${zeroY-8}">monthly baseline</text>
         <path d="${line}" fill="none" stroke="#087f7a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
         <circle cx="${x(latestIdx)}" cy="${scale.y(latest.anomaly)}" r="7" fill="#aa263f"></circle>
-        <path d="M${x(latestIdx)-7},${scale.y(latest.anomaly)+8} L${x(latestIdx)-92},${scale.y(latest.anomaly)+54}" stroke="#aa263f" stroke-width="1.5"></path>
-        <text class="annotation" x="${x(latestIdx)-286}" y="${scale.y(latest.anomaly)+66}">Apr 2026: ${signed(latest.anomaly)} °C</text>
-        <text class="annotation-small" x="${x(latestIdx)-286}" y="${scale.y(latest.anomaly)+85}">record monthly anomaly</text>
         ${yearTicks.map(i => `<text class="axis" x="${x(i)}" y="${H-16}" text-anchor="middle">${rows[i].month.slice(0,4)}</text>`).join("")}
       </svg>`;
     }
