@@ -105,6 +105,14 @@
       color: var(--ocean-dark);
     }
     .metric.hot .v { color: var(--hot); }
+    .metric.small {
+      min-width: 145px;
+      background: #fff;
+      border-color: rgba(170, 38, 63, .22);
+    }
+    .metric.small .v {
+      font-size: 23px;
+    }
     .wrap {
       width: min(1180px, calc(100vw - 36px));
       margin: 0 auto;
@@ -173,6 +181,9 @@
     .line-thin { fill: none; stroke: rgba(8,127,122,.35); stroke-width: 1.4; }
     .trend-line { fill: none; stroke: var(--heat); stroke-width: 2.5; stroke-linecap: round; }
     .hot-line { fill: none; stroke: var(--hot); stroke-width: 3; stroke-linecap: round; }
+    .threshold-line { fill: none; stroke: var(--gold); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 6 5; }
+    .heatwave-shade { fill: rgba(170, 38, 63, .12); }
+    .heatwave-dot { fill: var(--hot); stroke: #fff; stroke-width: 1.2; }
     .band { fill: rgba(8, 127, 122, .12); }
     .bar { fill: var(--ocean); }
     .bar-hot { fill: var(--hot); }
@@ -209,6 +220,7 @@
       color: var(--ocean-dark);
       font-weight: 700;
     }
+    [hidden] { display: none !important; }
     @media (max-width: 900px) {
       .story { grid-template-columns: 1fr; padding: 46px 0; }
       .chart { height: 330px; }
@@ -265,6 +277,26 @@
       <div class="chart-panel">
         <div class="chart-title"><span>Monthly anomaly since 2020</span><span class="chart-note">relative to monthly climatology</span></div>
         <div class="chart" id="anomalyChart"></div>
+      </div>
+    </section>
+
+    <section class="story" id="heatwaveStory" hidden>
+      <div>
+        <div class="eyebrow">Marine Heatwaves</div>
+        <h2>Heat stress is no longer just a warm-month average.</h2>
+        <p id="mhwText"></p>
+        <div class="metric-row">
+          <div class="metric small hot"><div class="k">Detected Events</div><div class="v" id="mhwEvents"></div></div>
+          <div class="metric small hot"><div class="k">2026 Heatwave Days</div><div class="v" id="mhwYearDays"></div></div>
+          <div class="metric small"><div class="k">Last 12 Months</div><div class="v" id="mhwLast12"></div></div>
+          <div class="metric small"><div class="k">Strongest Event</div><div class="v" id="mhwStrongest"></div></div>
+        </div>
+        <div class="callout" id="mhwCallout"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title"><span>Daily SST against the marine heatwave threshold</span><span class="chart-note">red shading marks heatwave days</span></div>
+        <div class="legend"><span><span class="swatch"></span>Daily SST</span><span><span class="swatch heat"></span>90th percentile threshold</span><span><span class="swatch hot"></span>Heatwave days</span></div>
+        <div class="chart" id="mhwChart"></div>
       </div>
     </section>
 
@@ -325,13 +357,66 @@
       document.getElementById("trendText").textContent =
         `Since 2016, the monthly record shows the Gulf repeatedly reaching about 30 °C in late summer. April 2026 stands out because it begins the warm season far above its monthly baseline.`;
       document.getElementById("sourceText").innerHTML =
-        `Original data sources: <a href="https://www.ncei.noaa.gov/products/optimum-interpolation-sst">NOAA/NCEI Optimum Interpolation Sea Surface Temperature (OISST) v2.1</a>, accessed through <a href="https://downloads.psl.noaa.gov/Datasets/noaa.oisst.v2.highres/">NOAA PSL monthly OISST files</a>. Gulf of California sampled station series, ${DATA.meta.coverage_start} to ${DATA.meta.coverage_end}. Analysis and storymap: combined UoP-SIO Gulf of California climate monitoring group by Fabio Favoretto and Octavio Aburto-Oropeza. Scenario values are not forecasts.`;
+        `Original data sources: <a href="https://www.ncei.noaa.gov/products/optimum-interpolation-sst">NOAA/NCEI Optimum Interpolation Sea Surface Temperature (OISST) v2.1</a>, accessed through <a href="https://downloads.psl.noaa.gov/Datasets/noaa.oisst.v2.highres/">NOAA PSL monthly OISST files</a>. Marine heatwaves follow the Hobday/heatwaveR-style definition using a 1982-2011 daily baseline and 90th percentile threshold. Gulf of California sampled station series, ${DATA.meta.coverage_start} to ${DATA.meta.coverage_end}. Analysis and storymap: combined UoP-SIO Gulf of California climate monitoring group by Fabio Favoretto and Octavio Aburto-Oropeza. Scenario values are not forecasts.`;
 
       drawHero();
       drawAprilRanking();
       drawAnomalyChart();
+      renderHeatwaves();
       drawScenarioChart();
       drawTimeline();
+    }
+
+    function renderHeatwaves() {
+      const H = DATA.marine_heatwaves;
+      const section = document.getElementById("heatwaveStory");
+      if (!H || !H.metrics || !H.daily_recent || !H.daily_recent.length) {
+        section.hidden = true;
+        return;
+      }
+      section.hidden = false;
+      const M = H.metrics;
+      const active = M.latest_status === "active";
+      document.getElementById("mhwText").textContent =
+        `Using a 1982-2011 daily baseline, the Gulf sample contains ${M.event_count} marine heatwave events since ${M.coverage_start}. The latest available day (${M.latest_date}) is ${active ? "inside" : "outside"} a marine heatwave, with SST ${fmt(M.latest_intensity_above_threshold)} °C ${active ? "above" : "relative to"} the threshold.`;
+      document.getElementById("mhwEvents").textContent = M.event_count;
+      document.getElementById("mhwYearDays").textContent = `${M.latest_year_heatwave_days} days`;
+      document.getElementById("mhwLast12").textContent = `${M.last_12_month_heatwave_days} days`;
+      document.getElementById("mhwStrongest").textContent = `${fmt(M.strongest_event_cumulative)} °C-d`;
+      document.getElementById("mhwCallout").textContent = active
+        ? `The current event began ${M.current_event_start} and spans ${M.current_event_days} days in the available record, peaking at +${fmt(M.current_event_peak)} °C above the seasonal baseline.`
+        : `The strongest event so far ran ${M.strongest_event_start} to ${M.strongest_event_end}, accumulating ${fmt(M.strongest_event_cumulative)} °C-days of heat stress.`;
+      drawHeatwaveChart(H.daily_recent);
+    }
+
+    function drawHeatwaveChart(rows) {
+      const W = 860, H = 390, L = 72, R = 36, T = 26, B = 62;
+      const values = [];
+      rows.forEach(row => { values.push(row.sst, row.thresh); });
+      const scale = yScale(values, H, T, B);
+      const x = i => L + i * (W - L - R) / (rows.length - 1);
+      const bandWidth = Math.max(1, (W - L - R) / rows.length);
+      const heat = rows.map((row, i) => row.mhw
+        ? `<rect class="heatwave-shade" x="${x(i) - bandWidth / 2}" y="${T}" width="${bandWidth}" height="${H-T-B}"></rect>`
+        : "").join("");
+      const dots = rows.map((row, i) => row.mhw && i % 3 === 0
+        ? `<circle class="heatwave-dot" cx="${x(i)}" cy="${scale.y(row.sst)}" r="2.4"></circle>`
+        : "").join("");
+      const sstLine = path(rows.map((row, i) => [x(i), scale.y(row.sst)]));
+      const threshLine = path(rows.map((row, i) => [x(i), scale.y(row.thresh)]));
+      const yTicks = ticks(scale.min, scale.max, 5);
+      const tickDates = ["2023-01-01", "2024-01-01", "2025-01-01", "2026-01-01", rows[rows.length - 1].date];
+      const xTicks = tickDates.map(date => rows.findIndex(row => row.date >= date)).filter(index => index >= 0);
+      document.getElementById("mhwChart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img">
+        <rect width="${W}" height="${H}" fill="#ffffff"></rect>
+        ${heat}
+        ${yTicks.map(v => `<line class="gridline" x1="${L}" x2="${W-R}" y1="${scale.y(v)}" y2="${scale.y(v)}"></line><text class="axis" x="${L-8}" y="${scale.y(v)+4}" text-anchor="end">${fmt(v)}</text>`).join("")}
+        <text class="axis" x="20" y="${T+18}" transform="rotate(-90 20 ${T+18})">Daily SST (°C)</text>
+        <path class="threshold-line" d="${threshLine}"></path>
+        <path class="line-main" d="${sstLine}"></path>
+        ${dots}
+        ${xTicks.map(i => `<text class="axis" x="${x(i)}" y="${H-20}" text-anchor="${i === rows.length - 1 ? "end" : "middle"}">${rows[i].date.slice(0, 7)}</text>`).join("")}
+      </svg>`;
     }
 
     function drawHero() {
