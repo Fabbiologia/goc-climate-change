@@ -8,15 +8,18 @@ Static GitHub Pages site for the Gulf of California sea-surface temperature stor
 - `temperature_storymap_data.js`: generated NOAA OISST v2.1 summary data used by the page.
 - `ocean_gulf_sample_points.csv`: sampled Gulf station points used to build the series.
 
-## Local Update Source
+## Data Sources & Credits
 
-The source data and update scripts live on the SANDISK drive at:
+Original sea-surface temperature source:
 
-```bash
-/media/vision/SANDISK/ocean_data
-```
+- [NOAA/NCEI Optimum Interpolation Sea Surface Temperature (OISST) v2.1](https://www.ncei.noaa.gov/products/optimum-interpolation-sst)
+- [NOAA PSL monthly OISST files](https://downloads.psl.noaa.gov/Datasets/noaa.oisst.v2.highres/)
 
-The weekly ocean update rebuilds the storymap data locally, then publishes any changed site files to this repository.
+Analysis and storymap: combined UoP-SIO Gulf of California climate monitoring
+group by Fabio Favoretto and Octavio Aburto-Oropeza.
+
+The weekly ocean update rebuilds the storymap data, then publishes any changed
+site files to this repository.
 
 ## Public Site
 
