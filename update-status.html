@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automated Data Update Status</title>
+  <meta name="description" content="Health checks for the SNIIM and ocean/SST automated data update jobs.">
+  <script src="update-status-data.js"></script>
+  <style>
+    :root {
+      --bg: #f5f6f7;
+      --ink: #15202b;
+      --muted: #5d6b78;
+      --line: #d8dee4;
+      --panel: #ffffff;
+      --ok: #157347;
+      --warn: #b45309;
+      --fail: #b42318;
+      --code: #101828;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    header {
+      padding: 28px 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    main, .head-inner {
+      width: min(1120px, calc(100vw - 32px));
+      margin: 0 auto;
+    }
+    .title-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    p { margin: 0; color: var(--muted); }
+    main { padding: 24px 0 40px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .badge.ok { background: var(--ok); }
+    .badge.warning { background: var(--warn); }
+    .badge.failed { background: var(--fail); }
+    .system {
+      margin-top: 18px;
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left-width: 6px;
+      border-radius: 8px;
+    }
+    .system.ok { border-left-color: var(--ok); }
+    .system.warning { border-left-color: var(--warn); }
+    .system.failed { border-left-color: var(--fail); }
+    .system-head {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: 0; }
+    h3 { margin: 18px 0 8px; font-size: 14px; letter-spacing: 0; text-transform: uppercase; color: #344054; }
+    .path {
+      margin-top: 12px;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: #344054;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .kv { margin: 0; border-top: 1px solid var(--line); }
+    .kv-row {
+      display: grid;
+      grid-template-columns: minmax(160px, .75fr) minmax(0, 1.25fr);
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    dt { color: var(--muted); font-weight: 700; }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    ul { margin: 0; padding-left: 20px; }
+    li + li { margin-top: 6px; }
+    .failures li { color: var(--fail); }
+    .warnings li { color: var(--warn); }
+    .empty { color: var(--muted); font-style: italic; }
+    details {
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    summary {
+      cursor: pointer;
+      color: #344054;
+      font-weight: 760;
+    }
+    pre {
+      max-height: 460px;
+      overflow: auto;
+      margin: 12px 0 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--code);
+      color: #f2f4f7;
+      font-size: 12px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .meta div {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .meta b { display: block; margin-bottom: 4px; }
+    a { color: #075985; }
+    @media (max-width: 760px) {
+      .title-row, .system-head { display: block; }
+      .badge { margin-top: 12px; }
+      .grid, .meta { grid-template-columns: 1fr; }
+      .kv-row { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-inner">
+      <div class="title-row">
+        <div>
+          <h1>Automated Data Update Status</h1>
+          <p>Generated 2026-06-16T13:23:25+00:00 on vision-desktop. Reason: initial GitHub status page setup.</p>
+        </div>
+        <span class="badge failed">FAILED</span>
+      </div>
+      <div class="meta">
+        <div><b>Status page</b><a href="https://fabbiologia.github.io/goc-climate-change/update-status.html">https://fabbiologia.github.io/goc-climate-change/update-status.html</a></div>
+        <div><b>Repository</b>/home/vision/goc-climate-change</div>
+        <div><b>Alert signal</b>Git commit pushed to <code>main</code> and <code>gh-pages</code>.</div>
+      </div>
+    </div>
+  </header>
+  <main>
+    
+      <section class="system failed">
+        <div class="system-head">
+          <div>
+            <h2>SNIIM fisheries prices</h2>
+            <p>Mondays 03:17 local time</p>
+          </div>
+          <span class="badge failed">FAILED</span>
+        </div>
+        <div class="path">/media/vision/SANDISK/SNIIM prices</div>
+        <div class="grid">
+          <div>
+            <h3>Latest Data</h3>
+            <dl class="kv"><div class="kv-row"><dt>dashboard generated</dt><dd>2026-06-08T03:26:03+00:00</dd></div>
+<div class="kv-row"><dt>raw records end</dt><dd>2026-06-05</dd></div>
+<div class="kv-row"><dt>consolidated records end</dt><dd>2026-06-08</dd></div>
+<div class="kv-row"><dt>research dataset generated</dt><dd>2026-06-16T11:37:08+00:00</dd></div>
+<div class="kv-row"><dt>research latest month</dt><dd>2026-06</dd></div>
+<div class="kv-row"><dt>latest scheduled log line</dt><dd>2026-06-08T04:28:48+01:00 SNIIM weekly update complete</dd></div></dl>
+          </div>
+          <div>
+            <h3>Metrics</h3>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
+<div class="kv-row"><dt>dashboard age</dt><dd>8.4 days</dd></div>
+<div class="kv-row"><dt>dashboard rows</dt><dd>5,405,586</dd></div>
+<div class="kv-row"><dt>annual rows</dt><dd>66,651</dd></div>
+<div class="kv-row"><dt>consolidated rows</dt><dd>319,633</dd></div>
+<div class="kv-row"><dt>raw DB mtime</dt><dd>2026-06-08T03:24:34+00:00</dd></div>
+<div class="kv-row"><dt>research dataset age</dt><dd>0.1 days</dd></div>
+<div class="kv-row"><dt>monthly price series</dt><dd>143,363</dd></div>
+<div class="kv-row"><dt>deduped price records</dt><dd>1,314,507</dd></div>
+<div class="kv-row"><dt>closure covariates</dt><dd>33</dd></div>
+<div class="kv-row"><dt>fuel covariate rows</dt><dd>0</dd></div>
+<div class="kv-row"><dt>research DB quick_check</dt><dd>ok</dd></div></dl>
+          </div>
+        </div>
+        <div class="grid">
+          <div>
+            <h3>Failures</h3>
+            <ul class="failures"><li>SANDISK is mounted read-only, so the SNIIM update cannot write new data.</li></ul>
+          </div>
+          <div>
+            <h3>Warnings</h3>
+            <ul class="warnings"><li>dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
+          </div>
+        </div>
+        
+        <details>
+          <summary>Latest scheduled log excerpt</summary>
+          <pre>2026-06-08T03:24:19Z update consolidated Trucha Arcoiris 2026-03: 3 rows
+2026-06-08T03:24:20Z update consolidated Trucha Arcoiris 2026-04: 3 rows
+2026-06-08T03:24:21Z update consolidated Trucha Arcoiris 2026-05: 3 rows
+2026-06-08T03:24:22Z update consolidated Trucha Arcoiris 2026-06: 3 rows
+2026-06-08T03:24:23Z update consolidated Trucha marina 2026-03: 5 rows
+2026-06-08T03:24:24Z update consolidated Trucha marina 2026-04: 5 rows
+2026-06-08T03:24:25Z update consolidated Trucha marina 2026-05: 5 rows
+2026-06-08T03:24:26Z update consolidated Trucha marina 2026-06: 5 rows
+2026-06-08T03:24:27Z update consolidated Vaqueta 2026-03: 1 rows
+2026-06-08T03:24:28Z update consolidated Vaqueta 2026-04: 1 rows
+2026-06-08T03:24:29Z update consolidated Vaqueta 2026-05: 1 rows
+2026-06-08T03:24:30Z update consolidated Vaqueta 2026-06: 1 rows
+2026-06-08T03:24:31Z update consolidated Verdillo 2026-03: 2 rows
+2026-06-08T03:24:32Z update consolidated Verdillo 2026-04: 2 rows
+2026-06-08T03:24:33Z update consolidated Verdillo 2026-05: 2 rows
+2026-06-08T03:24:34Z update consolidated Verdillo 2026-06: 2 rows
+2026-06-08T03:24:34Z update complete: 74248 rows, 66651 annual rows, 251 cuaresma pages, 3986 consolidated rows, 0 recoverable errors
+Wrote /media/vision/SANDISK/SNIIM prices/dashboard_data.js with 199,702 monthly rows and 6,913 market rows
+Loaded 318 CPI months through 2026-06
+Harmonized 306 raw product labels
+Built 1,314,507 deduplicated price records and 143,363 monthly series rows
+Built inflation-corrected annual and consolidated tables
+Built Lent covariates for 2000-2027
+Loaded 33 closure rows and 131 monthly closure covariates
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 700, in urlopen
+    httplib_response = self._make_request(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 383, in _make_request
+    self._validate_conn(conn)
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 1029, in _validate_conn
+    conn.connect()
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 411, in connect
+    self.sock = ssl_wrap_socket(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/ssl_.py&quot;, line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/ssl_.py&quot;, line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File &quot;/usr/lib/python3.10/ssl.py&quot;, line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File &quot;/usr/lib/python3.10/ssl.py&quot;, line 1100, in _create
+    self.do_handshake()
+  File &quot;/usr/lib/python3.10/ssl.py&quot;, line 1371, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/adapters.py&quot;, line 644, in send
+    resp = conn.urlopen(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 756, in urlopen
+    retries = retries.increment(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/retry.py&quot;, line 576, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;, port=443): Max retries exceeded with url: /api/3/action/package_show?id=petroliferos (Caused by SSLError(SSLCertVerificationError(1, &#x27;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)&#x27;)))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/media/vision/SANDISK/SNIIM prices/build_research_dataset.py&quot;, line 843, in &lt;module&gt;
+    main()
+  File &quot;/media/vision/SANDISK/SNIIM prices/build_research_dataset.py&quot;, line 836, in main
+    write_fuel_prices(conn, max_resources=args.fuel_max_resources)
+  File &quot;/media/vision/SANDISK/SNIIM prices/build_research_dataset.py&quot;, line 643, in write_fuel_prices
+    resources = fetch_petroliferos_resources()
+  File &quot;/media/vision/SANDISK/SNIIM prices/build_research_dataset.py&quot;, line 596, in fetch_petroliferos_resources
+    response = requests.get(PETROLIFEROS_PACKAGE, timeout=60)
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/api.py&quot;, line 73, in get
+    return request(&quot;get&quot;, url, params=params, **kwargs)
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/api.py&quot;, line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/sessions.py&quot;, line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/sessions.py&quot;, line 703, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/home/vision/.local/lib/python3.10/site-packages/requests/adapters.py&quot;, line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;, port=443): Max retries exceeded with url: /api/3/action/package_show?id=petroliferos (Caused by SSLError(SSLCertVerificationError(1, &#x27;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)&#x27;)))
+2026-06-08T04:28:48+01:00 WARNING build_research_dataset.py failed
+2026-06-08T04:28:48+01:00 SNIIM weekly update complete</pre>
+        </details>
+      </section>
+    
+
+      <section class="system failed">
+        <div class="system-head">
+          <div>
+            <h2>Ocean/SST dashboard</h2>
+            <p>Wednesdays 04:22 local time</p>
+          </div>
+          <span class="badge failed">FAILED</span>
+        </div>
+        <div class="path">/media/vision/SANDISK/ocean_data</div>
+        <div class="grid">
+          <div>
+            <h3>Latest Data</h3>
+            <dl class="kv"><div class="kv-row"><dt>ocean dashboard generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
+<div class="kv-row"><dt>SST coverage end</dt><dd>2026-04-30</dd></div>
+<div class="kv-row"><dt>SST anomaly coverage end</dt><dd>2026-04-30</dd></div>
+<div class="kv-row"><dt>chlorophyll coverage end</dt><dd>2025-12-01</dd></div>
+<div class="kv-row"><dt>temperature storymap generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
+<div class="kv-row"><dt>storymap coverage end</dt><dd>2026-04</dd></div>
+<div class="kv-row"><dt>marine heatwave coverage end</dt><dd>2026-04-30</dd></div>
+<div class="kv-row"><dt>latest scheduled log line</dt><dd>2026-06-10T04:22:53+01:00 ocean update complete</dd></div></dl>
+          </div>
+          <div>
+            <h3>Metrics</h3>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
+<div class="kv-row"><dt>ocean dashboard age</dt><dd>6.4 days</dd></div>
+<div class="kv-row"><dt>source files</dt><dd>876</dd></div>
+<div class="kv-row"><dt>daily rows</dt><dd>49,261</dd></div>
+<div class="kv-row"><dt>monthly rows</dt><dd>1,948</dd></div>
+<div class="kv-row"><dt>temperature storymap age</dt><dd>6.4 days</dd></div>
+<div class="kv-row"><dt>latest month</dt><dd>2026-04</dd></div>
+<div class="kv-row"><dt>latest SST anomaly</dt><dd>2.896</dd></div>
+<div class="kv-row"><dt>all-time anomaly month</dt><dd>2026-04</dd></div>
+<div class="kv-row"><dt>marine heatwave events</dt><dd>121</dd></div>
+<div class="kv-row"><dt>marine heatwave generated</dt><dd>2026-06-10T03:22:24+00:00</dd></div>
+<div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
+<div class="kv-row"><dt>temperature_storymap_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
+<div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-10T03:22:24+00:00</dd></div></dl>
+          </div>
+        </div>
+        <div class="grid">
+          <div>
+            <h3>Failures</h3>
+            <ul class="failures"><li>SANDISK is mounted read-only, so the ocean update cannot write new data.</li></ul>
+          </div>
+          <div>
+            <h3>Warnings</h3>
+            <ul class="warnings"><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li></ul>
+          </div>
+        </div>
+        
+        <details>
+          <summary>Latest scheduled log excerpt</summary>
+          <pre>2026-06-10 04:22:12,491 ERROR Monthly update failed for esa_oc
+Traceback (most recent call last):
+  File &quot;/media/vision/SANDISK/ocean_data/run_ocean_update.py&quot;, line 32, in main
+    pipeline.ingest_monthly_updates(dataset_keys=[dataset_key])
+  File &quot;/home/vision/Research/src/oceandata/pipeline.py&quot;, line 184, in ingest_monthly_updates
+    paths = list(
+  File &quot;/home/vision/Research/src/oceandata/download/esa_oc.py&quot;, line 77, in download_historical
+    yield download_month(year, month, session=session, overwrite=overwrite)
+  File &quot;/home/vision/Research/src/oceandata/download/esa_oc.py&quot;, line 39, in download_month
+    return erddap.download_griddap(
+  File &quot;/home/vision/Research/src/oceandata/erddap.py&quot;, line 92, in download_griddap
+    return stream_download(
+  File &quot;/home/vision/Research/src/oceandata/utils.py&quot;, line 59, in stream_download
+    resp.raise_for_status()
+  File &quot;/home/vision/Research/.venv/lib/python3.10/site-packages/requests/models.py&quot;, line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error:  for url: https://coastwatch.pfeg.noaa.gov/erddap/griddap/pmlEsaCCI60OceanColorMonthly_Lon0360.nc?chlor_a%5B(2026-01-01T00:00:00Z):1:(2026-01-01T00:00:00Z)%5D%5B(22.0):1:(32.5)%5D%5B(244.5):1:(255.0)%5D
+2026-06-10 04:22:12,494 INFO Rebuilding marine heatwave metrics
+Wrote /media/vision/SANDISK/ocean_data/gulf_sst_marine_heatwaves.csv, /media/vision/SANDISK/ocean_data/gulf_sst_mhw_daily.csv, /media/vision/SANDISK/ocean_data/gulf_sst_mhw_monthly.csv
+{
+  &quot;generated_at&quot;: &quot;2026-06-10T03:22:24+00:00&quot;,
+  &quot;source&quot;: &quot;/media/vision/SANDISK/ocean_data/ocean_dashboard_data.js&quot;,
+  &quot;method&quot;: &quot;Python implementation of Hobday/heatwaveR-style marine heatwave definition&quot;,
+  &quot;heatwaveR_available&quot;: false,
+  &quot;baseline_start&quot;: 1982,
+  &quot;baseline_end&quot;: 2011,
+  &quot;threshold_percentile&quot;: 90,
+  &quot;window_half_width_days&quot;: 5,
+  &quot;min_duration_days&quot;: 5,
+  &quot;max_gap_days&quot;: 2,
+  &quot;events&quot;: 121,
+  &quot;coverage_start&quot;: &quot;1981-09-01&quot;,
+  &quot;coverage_end&quot;: &quot;2026-04-30&quot;
+}
+2026-06-10 04:22:24,914 INFO Rebuilding Gulf-only dashboard data
+Wrote /media/vision/SANDISK/ocean_data/ocean_dashboard_data.js with 4 variables, 49261 daily rows, 1948 monthly rows
+2026-06-10 04:22:48,921 INFO Rebuilding temperature storymap data
+Wrote /media/vision/SANDISK/ocean_data/temperature_storymap_data.js
+{
+  &quot;latest_month&quot;: &quot;2026-04&quot;,
+  &quot;latest_observed&quot;: 24.0,
+  &quot;latest_anomaly&quot;: 2.896,
+  &quot;latest_climatology&quot;: 21.105,
+  &quot;april_rank&quot;: 45,
+  &quot;april_count&quot;: 45,
+  &quot;previous_april_record_month&quot;: &quot;2015-04&quot;,
+  &quot;previous_april_record&quot;: 23.083,
+  &quot;last_el_nino_label&quot;: &quot;2023-24 El Ni\u00f1o&quot;,
+  &quot;last_el_nino_peak_month&quot;: &quot;2023-08&quot;,
+  &quot;last_el_nino_peak_observed&quot;: 30.285,
+  &quot;last_el_nino_peak_anomaly_month&quot;: &quot;2024-02&quot;,
+  &quot;last_el_nino_peak_anomaly&quot;: 1.402,
+  &quot;strong_el_nino_label&quot;: &quot;2015-16 El Ni\u00f1o&quot;,
+  &quot;strong_el_nino_peak_month&quot;: &quot;2015-09&quot;,
+  &quot;strong_el_nino_peak_observed&quot;: 31.24,
+  &quot;all_time_peak_month&quot;: &quot;2015-09&quot;,
+  &quot;all_time_peak_observed&quot;: 31.24,
+  &quot;all_time_peak_anomaly_month&quot;: &quot;2026-04&quot;,
+  &quot;all_time_peak_anomaly&quot;: 2.896,
+  &quot;slope_all_per_decade&quot;: 0.252,
+  &quot;slope_since_2016_per_decade&quot;: 0.016,
+  &quot;median_april_to_peak_increase&quot;: 8.863,
+  &quot;q25_april_to_peak_increase&quot;: 8.786,
+  &quot;q75_april_to_peak_increase&quot;: 9.231,
+  &quot;projected_peak&quot;: 32.863,
+  &quot;projected_low&quot;: 32.786,
+  &quot;projected_high&quot;: 33.231,
+  &quot;projected_vs_last_el_nino&quot;: 2.578,
+  &quot;projected_vs_2015_16&quot;: 1.623
+}
+2026-06-10 04:22:49,325 INFO Ocean update finished with 2 dataset failures
+[main 8310b79] Update Gulf temperature storymap data
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:Fabbiologia/goc-climate-change.git
+   cbf5371..8310b79  main -&gt; main
+To github.com:Fabbiologia/goc-climate-change.git
+   cbf5371..8310b79  main -&gt; gh-pages
+2026-06-10T04:22:53+01:00 published GitHub Pages update
+2026-06-10T04:22:53+01:00 GitHub Pages publish complete
+2026-06-10T04:22:53+01:00 ocean update complete</pre>
+        </details>
+      </section>
+    
+  </main>
+</body>
+</html>
