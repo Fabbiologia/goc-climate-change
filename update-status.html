@@ -163,9 +163,9 @@
       <div class="title-row">
         <div>
           <h1>Automated Data Update Status</h1>
-          <p>Generated 2026-06-16T13:24:46+00:00 on vision-desktop. Reason: initial GitHub status page publish.</p>
+          <p>Generated 2026-06-16T13:39:29+00:00 on vision-desktop. Reason: local live data migration test.</p>
         </div>
-        <span class="badge failed">FAILED</span>
+        <span class="badge warning">WARNING</span>
       </div>
       <div class="meta">
         <div><b>Status page</b><a href="https://fabbiologia.github.io/goc-climate-change/update-status.html">https://fabbiologia.github.io/goc-climate-change/update-status.html</a></div>
@@ -176,15 +176,15 @@
   </header>
   <main>
     
-      <section class="system failed">
+      <section class="system warning">
         <div class="system-head">
           <div>
             <h2>SNIIM fisheries prices</h2>
             <p>Mondays 03:17 local time</p>
           </div>
-          <span class="badge failed">FAILED</span>
+          <span class="badge warning">WARNING</span>
         </div>
-        <div class="path">/media/vision/SANDISK/SNIIM prices</div>
+        <div class="path">/home/vision/data_automation/sniim_prices</div>
         <div class="grid">
           <div>
             <h3>Latest Data</h3>
@@ -197,7 +197,7 @@
           </div>
           <div>
             <h3>Metrics</h3>
-            <dl class="kv"><div class="kv-row"><dt>SANDISK mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>dashboard age</dt><dd>8.4 days</dd></div>
 <div class="kv-row"><dt>dashboard rows</dt><dd>5,405,586</dd></div>
 <div class="kv-row"><dt>annual rows</dt><dd>66,651</dd></div>
@@ -214,11 +214,11 @@
         <div class="grid">
           <div>
             <h3>Failures</h3>
-            <ul class="failures"><li>SANDISK is mounted read-only, so the SNIIM update cannot write new data.</li></ul>
+            <p class="empty">No failures detected.</p>
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
+            <ul class="warnings"><li>SANDISK archive is mounted read-only; live SNIIM updates can still run locally.</li><li>dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
           </div>
         </div>
         
@@ -308,15 +308,15 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
       </section>
     
 
-      <section class="system failed">
+      <section class="system warning">
         <div class="system-head">
           <div>
             <h2>Ocean/SST dashboard</h2>
             <p>Wednesdays 04:22 local time</p>
           </div>
-          <span class="badge failed">FAILED</span>
+          <span class="badge warning">WARNING</span>
         </div>
-        <div class="path">/media/vision/SANDISK/ocean_data</div>
+        <div class="path">/home/vision/data_automation/ocean_data</div>
         <div class="grid">
           <div>
             <h3>Latest Data</h3>
@@ -331,7 +331,7 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
           </div>
           <div>
             <h3>Metrics</h3>
-            <dl class="kv"><div class="kv-row"><dt>SANDISK mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>ro at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>ocean dashboard age</dt><dd>6.4 days</dd></div>
 <div class="kv-row"><dt>source files</dt><dd>876</dd></div>
 <div class="kv-row"><dt>daily rows</dt><dd>49,261</dd></div>
@@ -350,11 +350,11 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
         <div class="grid">
           <div>
             <h3>Failures</h3>
-            <ul class="failures"><li>SANDISK is mounted read-only, so the ocean update cannot write new data.</li></ul>
+            <p class="empty">No failures detected.</p>
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li></ul>
+            <ul class="warnings"><li>SANDISK archive is mounted read-only; live ocean updates can still run locally.</li><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li></ul>
           </div>
         </div>
         
