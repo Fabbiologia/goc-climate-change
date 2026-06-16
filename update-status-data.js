@@ -7,11 +7,11 @@ window.UPDATE_STATUS_DATA = {
     ],
     "status_page": "https://fabbiologia.github.io/goc-climate-change/update-status.html"
   },
-  "generated_at": "2026-06-16T13:23:25+00:00",
+  "generated_at": "2026-06-16T13:24:46+00:00",
   "host": "vision-desktop",
   "overall_status": "FAILED",
   "page_url": "https://fabbiologia.github.io/goc-climate-change/update-status.html",
-  "reason": "initial GitHub status page setup",
+  "reason": "initial GitHub status page publish",
   "remote": "git@github.com:Fabbiologia/goc-climate-change.git",
   "repo": "/home/vision/goc-climate-change",
   "systems": [

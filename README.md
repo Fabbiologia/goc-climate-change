@@ -7,6 +7,8 @@ Static GitHub Pages site for the Gulf of California sea-surface temperature stor
 - `index.html`: browser-ready storymap.
 - `temperature_storymap_data.js`: generated NOAA OISST v2.1 summary data used by the page.
 - `ocean_gulf_sample_points.csv`: sampled Gulf station points used to build the series.
+- `update-status.html`: automated health/status page for the SNIIM and ocean/SST update jobs.
+- `update-status-data.js`: machine-readable status payload used by the status page.
 
 ## Data Sources & Credits
 
@@ -27,6 +29,12 @@ After GitHub Pages finishes deploying, the site should be available at:
 
 ```text
 https://fabbiologia.github.io/goc-climate-change/
+```
+
+Update status page:
+
+```text
+https://fabbiologia.github.io/goc-climate-change/update-status.html
 ```
 
 If the page does not appear, open the repository on GitHub, go to **Settings > Pages**, choose **Deploy from a branch**, and select `gh-pages` with `/ (root)`.
