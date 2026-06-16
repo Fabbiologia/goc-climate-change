@@ -6,14 +6,14 @@ window.UPDATE_STATUS_DATA = {
       "SNIIM: Mondays 03:17 local time via /home/vision/update_alerts/run_sniim_update_with_alert.sh",
       "Ocean/SST: Wednesdays 04:22 local time via /home/vision/update_alerts/run_ocean_update_with_alert.sh"
     ],
-    "live_data_root": "/home/vision/data_automation",
+    "live_data_root": "/ssd/data_automation",
     "status_page": "https://fabbiologia.github.io/goc-climate-change/update-status.html"
   },
-  "generated_at": "2026-06-16T13:39:29+00:00",
+  "generated_at": "2026-06-16T14:04:07+00:00",
   "host": "vision-desktop",
   "overall_status": "WARNING",
   "page_url": "https://fabbiologia.github.io/goc-climate-change/update-status.html",
-  "reason": "local live data migration test",
+  "reason": "migrate live automation to SSD",
   "remote": "git@github.com:Fabbiologia/goc-climate-change.git",
   "repo": "/home/vision/goc-climate-change",
   "systems": [
@@ -172,7 +172,11 @@ window.UPDATE_STATUS_DATA = {
       "metrics": [
         {
           "label": "SANDISK archive mount",
-          "value": "ro at /media/vision/SANDISK"
+          "value": "unknown at /media/vision/SANDISK"
+        },
+        {
+          "label": "SANDISK archive state",
+          "value": "inactive / not mounted"
         },
         {
           "label": "dashboard age",
@@ -220,11 +224,10 @@ window.UPDATE_STATUS_DATA = {
         }
       ],
       "name": "SNIIM fisheries prices",
-      "project_path": "/home/vision/data_automation/sniim_prices",
+      "project_path": "/ssd/data_automation/sniim_prices",
       "schedule": "Mondays 03:17 local time",
       "status": "WARNING",
       "warnings": [
-        "SANDISK archive is mounted read-only; live SNIIM updates can still run locally.",
         "dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.",
         "Fuel-price covariates are empty; the SNIIM price dataset is still usable.",
         "Latest SNIIM scheduled log block contains 10 warning/error lines."
@@ -375,7 +378,11 @@ window.UPDATE_STATUS_DATA = {
       "metrics": [
         {
           "label": "SANDISK archive mount",
-          "value": "ro at /media/vision/SANDISK"
+          "value": "unknown at /media/vision/SANDISK"
+        },
+        {
+          "label": "SANDISK archive state",
+          "value": "inactive / not mounted"
         },
         {
           "label": "ocean dashboard age",
@@ -431,11 +438,10 @@ window.UPDATE_STATUS_DATA = {
         }
       ],
       "name": "Ocean/SST dashboard",
-      "project_path": "/home/vision/data_automation/ocean_data",
+      "project_path": "/ssd/data_automation/ocean_data",
       "schedule": "Wednesdays 04:22 local time",
       "status": "WARNING",
       "warnings": [
-        "SANDISK archive is mounted read-only; live ocean updates can still run locally.",
         "Latest ocean scheduled log block contains 6 warning/error lines.",
         "One or more provider monthly ingests failed; published data may lag provider availability."
       ]
