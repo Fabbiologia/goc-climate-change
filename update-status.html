@@ -163,7 +163,7 @@
       <div class="title-row">
         <div>
           <h1>Automated Data Update Status</h1>
-          <p>Generated 2026-06-16T14:04:07+00:00 on vision-desktop. Reason: migrate live automation to SSD.</p>
+          <p>Generated 2026-06-16T14:47:28+00:00 on vision-desktop. Reason: storage maintenance and documentation refresh.</p>
         </div>
         <span class="badge warning">WARNING</span>
       </div>
@@ -193,23 +193,31 @@
 <div class="kv-row"><dt>consolidated records end</dt><dd>2026-06-08</dd></div>
 <div class="kv-row"><dt>research dataset generated</dt><dd>2026-06-16T11:37:08+00:00</dd></div>
 <div class="kv-row"><dt>research latest month</dt><dd>2026-06</dd></div>
+<div class="kv-row"><dt>SNIIM storage status generated</dt><dd>2026-06-16T14:43:46+00:00</dd></div>
 <div class="kv-row"><dt>latest scheduled log line</dt><dd>2026-06-08T04:28:48+01:00 SNIIM weekly update complete</dd></div></dl>
           </div>
           <div>
             <h3>Metrics</h3>
             <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>dashboard age</dt><dd>8.4 days</dd></div>
+<div class="kv-row"><dt>dashboard age</dt><dd>8.5 days</dd></div>
 <div class="kv-row"><dt>dashboard rows</dt><dd>5,405,586</dd></div>
 <div class="kv-row"><dt>annual rows</dt><dd>66,651</dd></div>
 <div class="kv-row"><dt>consolidated rows</dt><dd>319,633</dd></div>
-<div class="kv-row"><dt>raw DB mtime</dt><dd>2026-06-08T03:24:34+00:00</dd></div>
+<div class="kv-row"><dt>raw DB mtime</dt><dd>2026-06-16T14:46:23.587718+00:00</dd></div>
 <div class="kv-row"><dt>research dataset age</dt><dd>0.1 days</dd></div>
 <div class="kv-row"><dt>monthly price series</dt><dd>143,363</dd></div>
 <div class="kv-row"><dt>deduped price records</dt><dd>1,314,507</dd></div>
 <div class="kv-row"><dt>closure covariates</dt><dd>33</dd></div>
 <div class="kv-row"><dt>fuel covariate rows</dt><dd>0</dd></div>
-<div class="kv-row"><dt>research DB quick_check</dt><dd>ok</dd></div></dl>
+<div class="kv-row"><dt>research DB quick_check</dt><dd>ok</dd></div>
+<div class="kv-row"><dt>SNIIM raw DB size</dt><dd>4.4 GB</dd></div>
+<div class="kv-row"><dt>SNIIM raw DB quick_check</dt><dd>ok</dd></div>
+<div class="kv-row"><dt>SNIIM research DB size</dt><dd>584.6 MB</dd></div>
+<div class="kv-row"><dt>SNIIM research DB quick_check</dt><dd>ok</dd></div>
+<div class="kv-row"><dt>SNIIM Parquet exports</dt><dd>7</dd></div>
+<div class="kv-row"><dt>SNIIM Parquet rows</dt><dd>1,844,811</dd></div>
+<div class="kv-row"><dt>SNIIM Parquet size</dt><dd>32.5 MB</dd></div></dl>
           </div>
         </div>
         <div class="grid">
@@ -219,7 +227,7 @@
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
+            <ul class="warnings"><li>dashboard is 8.5 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>SNIIM raw DB is 4.4 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
           </div>
         </div>
         
@@ -328,17 +336,18 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
 <div class="kv-row"><dt>temperature storymap generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
 <div class="kv-row"><dt>storymap coverage end</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>marine heatwave coverage end</dt><dd>2026-04-30</dd></div>
+<div class="kv-row"><dt>Ocean storage status generated</dt><dd>2026-06-16T14:42:55+00:00</dd></div>
 <div class="kv-row"><dt>latest scheduled log line</dt><dd>2026-06-10T04:22:53+01:00 ocean update complete</dd></div></dl>
           </div>
           <div>
             <h3>Metrics</h3>
             <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>ocean dashboard age</dt><dd>6.4 days</dd></div>
+<div class="kv-row"><dt>ocean dashboard age</dt><dd>6.5 days</dd></div>
 <div class="kv-row"><dt>source files</dt><dd>876</dd></div>
 <div class="kv-row"><dt>daily rows</dt><dd>49,261</dd></div>
 <div class="kv-row"><dt>monthly rows</dt><dd>1,948</dd></div>
-<div class="kv-row"><dt>temperature storymap age</dt><dd>6.4 days</dd></div>
+<div class="kv-row"><dt>temperature storymap age</dt><dd>6.5 days</dd></div>
 <div class="kv-row"><dt>latest month</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>latest SST anomaly</dt><dd>2.896</dd></div>
 <div class="kv-row"><dt>all-time anomaly month</dt><dd>2026-04</dd></div>
@@ -346,7 +355,12 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
 <div class="kv-row"><dt>marine heatwave generated</dt><dd>2026-06-10T03:22:24+00:00</dd></div>
 <div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
 <div class="kv-row"><dt>temperature_storymap_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
-<div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-10T03:22:24+00:00</dd></div></dl>
+<div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-10T03:22:24+00:00</dd></div>
+<div class="kv-row"><dt>Ocean SQLite DB size</dt><dd>1.6 MB</dd></div>
+<div class="kv-row"><dt>Ocean SQLite DB quick_check</dt><dd>ok</dd></div>
+<div class="kv-row"><dt>Ocean Parquet exports</dt><dd>5</dd></div>
+<div class="kv-row"><dt>Ocean Parquet rows</dt><dd>17,848</dd></div>
+<div class="kv-row"><dt>Ocean Parquet size</dt><dd>482.3 KB</dd></div></dl>
           </div>
         </div>
         <div class="grid">

@@ -9,11 +9,11 @@ window.UPDATE_STATUS_DATA = {
     "live_data_root": "/ssd/data_automation",
     "status_page": "https://fabbiologia.github.io/goc-climate-change/update-status.html"
   },
-  "generated_at": "2026-06-16T14:04:07+00:00",
+  "generated_at": "2026-06-16T14:47:28+00:00",
   "host": "vision-desktop",
   "overall_status": "WARNING",
   "page_url": "https://fabbiologia.github.io/goc-climate-change/update-status.html",
-  "reason": "migrate live automation to SSD",
+  "reason": "storage maintenance and documentation refresh",
   "remote": "git@github.com:Fabbiologia/goc-climate-change.git",
   "repo": "/home/vision/goc-climate-change",
   "systems": [
@@ -40,6 +40,10 @@ window.UPDATE_STATUS_DATA = {
         {
           "label": "research latest month",
           "value": "2026-06"
+        },
+        {
+          "label": "SNIIM storage status generated",
+          "value": "2026-06-16T14:43:46+00:00"
         },
         {
           "label": "latest scheduled log line",
@@ -180,7 +184,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "dashboard age",
-          "value": "8.4 days"
+          "value": "8.5 days"
         },
         {
           "label": "dashboard rows",
@@ -196,7 +200,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "raw DB mtime",
-          "value": "2026-06-08T03:24:34+00:00"
+          "value": "2026-06-16T14:46:23.587718+00:00"
         },
         {
           "label": "research dataset age",
@@ -221,6 +225,34 @@ window.UPDATE_STATUS_DATA = {
         {
           "label": "research DB quick_check",
           "value": "ok"
+        },
+        {
+          "label": "SNIIM raw DB size",
+          "value": "4.4 GB"
+        },
+        {
+          "label": "SNIIM raw DB quick_check",
+          "value": "ok"
+        },
+        {
+          "label": "SNIIM research DB size",
+          "value": "584.6 MB"
+        },
+        {
+          "label": "SNIIM research DB quick_check",
+          "value": "ok"
+        },
+        {
+          "label": "SNIIM Parquet exports",
+          "value": "7"
+        },
+        {
+          "label": "SNIIM Parquet rows",
+          "value": "1,844,811"
+        },
+        {
+          "label": "SNIIM Parquet size",
+          "value": "32.5 MB"
         }
       ],
       "name": "SNIIM fisheries prices",
@@ -228,8 +260,9 @@ window.UPDATE_STATUS_DATA = {
       "schedule": "Mondays 03:17 local time",
       "status": "WARNING",
       "warnings": [
-        "dashboard is 8.4 days old; expected weekly automation has not refreshed it recently.",
+        "dashboard is 8.5 days old; expected weekly automation has not refreshed it recently.",
         "Fuel-price covariates are empty; the SNIIM price dataset is still usable.",
+        "SNIIM raw DB is 4.4 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.",
         "Latest SNIIM scheduled log block contains 10 warning/error lines."
       ]
     },
@@ -264,6 +297,10 @@ window.UPDATE_STATUS_DATA = {
         {
           "label": "marine heatwave coverage end",
           "value": "2026-04-30"
+        },
+        {
+          "label": "Ocean storage status generated",
+          "value": "2026-06-16T14:42:55+00:00"
         },
         {
           "label": "latest scheduled log line",
@@ -386,7 +423,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "ocean dashboard age",
-          "value": "6.4 days"
+          "value": "6.5 days"
         },
         {
           "label": "source files",
@@ -402,7 +439,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "temperature storymap age",
-          "value": "6.4 days"
+          "value": "6.5 days"
         },
         {
           "label": "latest month",
@@ -435,6 +472,26 @@ window.UPDATE_STATUS_DATA = {
         {
           "label": "gulf_sst_mhw_metadata.json mtime",
           "value": "2026-06-10T03:22:24+00:00"
+        },
+        {
+          "label": "Ocean SQLite DB size",
+          "value": "1.6 MB"
+        },
+        {
+          "label": "Ocean SQLite DB quick_check",
+          "value": "ok"
+        },
+        {
+          "label": "Ocean Parquet exports",
+          "value": "5"
+        },
+        {
+          "label": "Ocean Parquet rows",
+          "value": "17,848"
+        },
+        {
+          "label": "Ocean Parquet size",
+          "value": "482.3 KB"
         }
       ],
       "name": "Ocean/SST dashboard",
