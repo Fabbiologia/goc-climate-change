@@ -163,7 +163,7 @@
       <div class="title-row">
         <div>
           <h1>Automated Data Update Status</h1>
-          <p>Generated 2026-06-16T14:47:28+00:00 on vision-desktop. Reason: storage maintenance and documentation refresh.</p>
+          <p>Generated 2026-06-17T03:23:02+00:00 on vision-desktop. Reason: Ocean/SST weekly cron wrapper.</p>
         </div>
         <span class="badge warning">WARNING</span>
       </div>
@@ -200,12 +200,12 @@
             <h3>Metrics</h3>
             <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>dashboard age</dt><dd>8.5 days</dd></div>
+<div class="kv-row"><dt>dashboard age</dt><dd>9.0 days</dd></div>
 <div class="kv-row"><dt>dashboard rows</dt><dd>5,405,586</dd></div>
 <div class="kv-row"><dt>annual rows</dt><dd>66,651</dd></div>
 <div class="kv-row"><dt>consolidated rows</dt><dd>319,633</dd></div>
 <div class="kv-row"><dt>raw DB mtime</dt><dd>2026-06-16T14:46:23.587718+00:00</dd></div>
-<div class="kv-row"><dt>research dataset age</dt><dd>0.1 days</dd></div>
+<div class="kv-row"><dt>research dataset age</dt><dd>0.7 days</dd></div>
 <div class="kv-row"><dt>monthly price series</dt><dd>143,363</dd></div>
 <div class="kv-row"><dt>deduped price records</dt><dd>1,314,507</dd></div>
 <div class="kv-row"><dt>closure covariates</dt><dd>33</dd></div>
@@ -227,7 +227,7 @@
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>dashboard is 8.5 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>SNIIM raw DB is 4.4 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
+            <ul class="warnings"><li>dashboard is 9.0 days old; expected weekly automation has not refreshed it recently.</li><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>SNIIM raw DB is 4.4 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.</li><li>Latest SNIIM scheduled log block contains 10 warning/error lines.</li></ul>
           </div>
         </div>
         
@@ -329,33 +329,32 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
         <div class="grid">
           <div>
             <h3>Latest Data</h3>
-            <dl class="kv"><div class="kv-row"><dt>ocean dashboard generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
-<div class="kv-row"><dt>SST coverage end</dt><dd>2026-04-30</dd></div>
-<div class="kv-row"><dt>SST anomaly coverage end</dt><dd>2026-04-30</dd></div>
-<div class="kv-row"><dt>chlorophyll coverage end</dt><dd>2025-12-01</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>ocean dashboard generated</dt><dd>2026-06-17T03:23:01+00:00</dd></div>
+<div class="kv-row"><dt>SST coverage end</dt><dd>2026-05-31</dd></div>
+<div class="kv-row"><dt>SST anomaly coverage end</dt><dd>2026-05-31</dd></div>
 <div class="kv-row"><dt>temperature storymap generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
 <div class="kv-row"><dt>storymap coverage end</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>marine heatwave coverage end</dt><dd>2026-04-30</dd></div>
 <div class="kv-row"><dt>Ocean storage status generated</dt><dd>2026-06-16T14:42:55+00:00</dd></div>
-<div class="kv-row"><dt>latest scheduled log line</dt><dd>2026-06-10T04:22:53+01:00 ocean update complete</dd></div></dl>
+<div class="kv-row"><dt>latest scheduled log line</dt><dd>subprocess.CalledProcessError: Command &#x27;[&#x27;/home/vision/Research/.venv/bin/python&#x27;, &#x27;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&#x27;]&#x27; returned non-zero exit status 1.</dd></div></dl>
           </div>
           <div>
             <h3>Metrics</h3>
             <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
 <div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>ocean dashboard age</dt><dd>6.5 days</dd></div>
-<div class="kv-row"><dt>source files</dt><dd>876</dd></div>
-<div class="kv-row"><dt>daily rows</dt><dd>49,261</dd></div>
-<div class="kv-row"><dt>monthly rows</dt><dd>1,948</dd></div>
-<div class="kv-row"><dt>temperature storymap age</dt><dd>6.5 days</dd></div>
+<div class="kv-row"><dt>ocean dashboard age</dt><dd>0.0 days</dd></div>
+<div class="kv-row"><dt>source files</dt><dd>877</dd></div>
+<div class="kv-row"><dt>daily rows</dt><dd>93</dd></div>
+<div class="kv-row"><dt>monthly rows</dt><dd>3</dd></div>
+<div class="kv-row"><dt>temperature storymap age</dt><dd>7.0 days</dd></div>
 <div class="kv-row"><dt>latest month</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>latest SST anomaly</dt><dd>2.896</dd></div>
 <div class="kv-row"><dt>all-time anomaly month</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>marine heatwave events</dt><dd>121</dd></div>
-<div class="kv-row"><dt>marine heatwave generated</dt><dd>2026-06-10T03:22:24+00:00</dd></div>
-<div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
+<div class="kv-row"><dt>marine heatwave generated</dt><dd>2026-06-17T03:22:54+00:00</dd></div>
+<div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-17T03:23:01.345384+00:00</dd></div>
 <div class="kv-row"><dt>temperature_storymap_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
-<div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-10T03:22:24+00:00</dd></div>
+<div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-17T03:22:54.417161+00:00</dd></div>
 <div class="kv-row"><dt>Ocean SQLite DB size</dt><dd>1.6 MB</dd></div>
 <div class="kv-row"><dt>Ocean SQLite DB quick_check</dt><dd>ok</dd></div>
 <div class="kv-row"><dt>Ocean Parquet exports</dt><dd>5</dd></div>
@@ -370,15 +369,39 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;,
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li></ul>
+            <ul class="warnings"><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li><li>Latest ocean log block does not show GitHub Pages publish completion.</li><li>The latest wrapper run reported WARNING.</li></ul>
           </div>
         </div>
-        
-        <details>
-          <summary>Latest scheduled log excerpt</summary>
-          <pre>2026-06-10 04:22:12,491 ERROR Monthly update failed for esa_oc
+        <details class="report"><summary>[WARNING] Ocean/SST weekly update on vision-desktop (WARNING)</summary><pre>Ocean/SST weekly update status
+Generated: 2026-06-17T03:23:02+00:00
+Project: /ssd/data_automation/ocean_data
+
+ocean_dashboard_data.js mtime: 2026-06-17T03:23:01.345384+00:00
+temperature_storymap_data.js mtime: 2026-06-10T03:22:48+00:00
+gulf_sst_mhw_metadata.json mtime: 2026-06-17T03:22:54.417161+00:00
+MHW coverage_end: 2026-04-30
+MHW events: 121
+
+Status: WARNING
+
+Warnings:
+- temperature_storymap_data.js was not regenerated during this run
+- GitHub Pages publish completion was not seen in the new log block
+- one or more provider monthly ingests failed; dashboard may still have refreshed from existing data
+- tracebacks appeared in the ocean update log
+- ocean update completion line was not seen in the new log block
+
+Recent log excerpt:
+2026-06-17T04:22:02+01:00 starting ocean update
+2026-06-17 04:22:06,423 INFO Starting monthly update for oisst
+2026-06-17 04:22:08,814 INFO Downloading OISST historical data from 2026-05 to 2026-05
+2026-06-17 04:22:40,723 INFO Downloaded /ssd/data_automation/ocean_data/raw/oisst/oisst_2026_05.nc
+2026-06-17 04:22:40,768 INFO Ingested 1 new NOAA OISST v2.1 products up to 2026-05
+2026-06-17 04:22:40,768 INFO Starting monthly update for esa_oc
+2026-06-17 04:22:40,982 INFO Downloading ESA OC historical data from 2026-01 to 2026-05
+2026-06-17 04:22:43,596 ERROR Monthly update failed for esa_oc
 Traceback (most recent call last):
-  File &quot;/media/vision/SANDISK/ocean_data/run_ocean_update.py&quot;, line 32, in main
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 32, in main
     pipeline.ingest_monthly_updates(dataset_keys=[dataset_key])
   File &quot;/home/vision/Research/src/oceandata/pipeline.py&quot;, line 184, in ingest_monthly_updates
     paths = list(
@@ -393,11 +416,11 @@ Traceback (most recent call last):
   File &quot;/home/vision/Research/.venv/lib/python3.10/site-packages/requests/models.py&quot;, line 1026, in raise_for_status
     raise HTTPError(http_error_msg, response=self)
 requests.exceptions.HTTPError: 404 Client Error:  for url: https://coastwatch.pfeg.noaa.gov/erddap/griddap/pmlEsaCCI60OceanColorMonthly_Lon0360.nc?chlor_a%5B(2026-01-01T00:00:00Z):1:(2026-01-01T00:00:00Z)%5D%5B(22.0):1:(32.5)%5D%5B(244.5):1:(255.0)%5D
-2026-06-10 04:22:12,494 INFO Rebuilding marine heatwave metrics
-Wrote /media/vision/SANDISK/ocean_data/gulf_sst_marine_heatwaves.csv, /media/vision/SANDISK/ocean_data/gulf_sst_mhw_daily.csv, /media/vision/SANDISK/ocean_data/gulf_sst_mhw_monthly.csv
+2026-06-17 04:22:43,603 INFO Rebuilding marine heatwave metrics
+Wrote /ssd/data_automation/ocean_data/gulf_sst_marine_heatwaves.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_daily.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_monthly.csv
 {
-  &quot;generated_at&quot;: &quot;2026-06-10T03:22:24+00:00&quot;,
-  &quot;source&quot;: &quot;/media/vision/SANDISK/ocean_data/ocean_dashboard_data.js&quot;,
+  &quot;generated_at&quot;: &quot;2026-06-17T03:22:54+00:00&quot;,
+  &quot;source&quot;: &quot;/ssd/data_automation/ocean_data/ocean_dashboard_data.js&quot;,
   &quot;method&quot;: &quot;Python implementation of Hobday/heatwaveR-style marine heatwave definition&quot;,
   &quot;heatwaveR_available&quot;: false,
   &quot;baseline_start&quot;: 1982,
@@ -410,52 +433,86 @@ Wrote /media/vision/SANDISK/ocean_data/gulf_sst_marine_heatwaves.csv, /media/vis
   &quot;coverage_start&quot;: &quot;1981-09-01&quot;,
   &quot;coverage_end&quot;: &quot;2026-04-30&quot;
 }
-2026-06-10 04:22:24,914 INFO Rebuilding Gulf-only dashboard data
-Wrote /media/vision/SANDISK/ocean_data/ocean_dashboard_data.js with 4 variables, 49261 daily rows, 1948 monthly rows
-2026-06-10 04:22:48,921 INFO Rebuilding temperature storymap data
-Wrote /media/vision/SANDISK/ocean_data/temperature_storymap_data.js
+2026-06-17 04:22:54,555 INFO Rebuilding Gulf-only dashboard data
+Wrote /ssd/data_automation/ocean_data/ocean_dashboard_data.js with 3 variables, 93 daily rows, 3 monthly rows
+Completed with 876 file errors; first error: missing file: /media/vision/SANDISK/ocean_data/raw/esa_oc/esa_oc_1997_09.nc
+2026-06-17 04:23:01,716 INFO Rebuilding temperature storymap data
+Traceback (most recent call last):
+  File &quot;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&quot;, line 321, in &lt;module&gt;
+    main()
+  File &quot;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&quot;, line 162, in main
+    latest_april = next(row for row in aprils if months[row[1]] == f&quot;{latest_year}-04&quot;)
+StopIteration
+Traceback (most recent call last):
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 60, in &lt;module&gt;
+    raise SystemExit(main())
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 50, in main
+    subprocess.run(
+  File &quot;/usr/lib/python3.10/subprocess.py&quot;, line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command &#x27;[&#x27;/home/vision/Research/.venv/bin/python&#x27;, &#x27;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&#x27;]&#x27; returned non-zero exit status 1.
+</pre></details>
+        <details>
+          <summary>Latest scheduled log excerpt</summary>
+          <pre>2026-06-17T04:22:02+01:00 starting ocean update
+2026-06-17 04:22:06,423 INFO Starting monthly update for oisst
+2026-06-17 04:22:08,814 INFO Downloading OISST historical data from 2026-05 to 2026-05
+2026-06-17 04:22:40,723 INFO Downloaded /ssd/data_automation/ocean_data/raw/oisst/oisst_2026_05.nc
+2026-06-17 04:22:40,768 INFO Ingested 1 new NOAA OISST v2.1 products up to 2026-05
+2026-06-17 04:22:40,768 INFO Starting monthly update for esa_oc
+2026-06-17 04:22:40,982 INFO Downloading ESA OC historical data from 2026-01 to 2026-05
+2026-06-17 04:22:43,596 ERROR Monthly update failed for esa_oc
+Traceback (most recent call last):
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 32, in main
+    pipeline.ingest_monthly_updates(dataset_keys=[dataset_key])
+  File &quot;/home/vision/Research/src/oceandata/pipeline.py&quot;, line 184, in ingest_monthly_updates
+    paths = list(
+  File &quot;/home/vision/Research/src/oceandata/download/esa_oc.py&quot;, line 77, in download_historical
+    yield download_month(year, month, session=session, overwrite=overwrite)
+  File &quot;/home/vision/Research/src/oceandata/download/esa_oc.py&quot;, line 39, in download_month
+    return erddap.download_griddap(
+  File &quot;/home/vision/Research/src/oceandata/erddap.py&quot;, line 92, in download_griddap
+    return stream_download(
+  File &quot;/home/vision/Research/src/oceandata/utils.py&quot;, line 59, in stream_download
+    resp.raise_for_status()
+  File &quot;/home/vision/Research/.venv/lib/python3.10/site-packages/requests/models.py&quot;, line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error:  for url: https://coastwatch.pfeg.noaa.gov/erddap/griddap/pmlEsaCCI60OceanColorMonthly_Lon0360.nc?chlor_a%5B(2026-01-01T00:00:00Z):1:(2026-01-01T00:00:00Z)%5D%5B(22.0):1:(32.5)%5D%5B(244.5):1:(255.0)%5D
+2026-06-17 04:22:43,603 INFO Rebuilding marine heatwave metrics
+Wrote /ssd/data_automation/ocean_data/gulf_sst_marine_heatwaves.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_daily.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_monthly.csv
 {
-  &quot;latest_month&quot;: &quot;2026-04&quot;,
-  &quot;latest_observed&quot;: 24.0,
-  &quot;latest_anomaly&quot;: 2.896,
-  &quot;latest_climatology&quot;: 21.105,
-  &quot;april_rank&quot;: 45,
-  &quot;april_count&quot;: 45,
-  &quot;previous_april_record_month&quot;: &quot;2015-04&quot;,
-  &quot;previous_april_record&quot;: 23.083,
-  &quot;last_el_nino_label&quot;: &quot;2023-24 El Ni\u00f1o&quot;,
-  &quot;last_el_nino_peak_month&quot;: &quot;2023-08&quot;,
-  &quot;last_el_nino_peak_observed&quot;: 30.285,
-  &quot;last_el_nino_peak_anomaly_month&quot;: &quot;2024-02&quot;,
-  &quot;last_el_nino_peak_anomaly&quot;: 1.402,
-  &quot;strong_el_nino_label&quot;: &quot;2015-16 El Ni\u00f1o&quot;,
-  &quot;strong_el_nino_peak_month&quot;: &quot;2015-09&quot;,
-  &quot;strong_el_nino_peak_observed&quot;: 31.24,
-  &quot;all_time_peak_month&quot;: &quot;2015-09&quot;,
-  &quot;all_time_peak_observed&quot;: 31.24,
-  &quot;all_time_peak_anomaly_month&quot;: &quot;2026-04&quot;,
-  &quot;all_time_peak_anomaly&quot;: 2.896,
-  &quot;slope_all_per_decade&quot;: 0.252,
-  &quot;slope_since_2016_per_decade&quot;: 0.016,
-  &quot;median_april_to_peak_increase&quot;: 8.863,
-  &quot;q25_april_to_peak_increase&quot;: 8.786,
-  &quot;q75_april_to_peak_increase&quot;: 9.231,
-  &quot;projected_peak&quot;: 32.863,
-  &quot;projected_low&quot;: 32.786,
-  &quot;projected_high&quot;: 33.231,
-  &quot;projected_vs_last_el_nino&quot;: 2.578,
-  &quot;projected_vs_2015_16&quot;: 1.623
+  &quot;generated_at&quot;: &quot;2026-06-17T03:22:54+00:00&quot;,
+  &quot;source&quot;: &quot;/ssd/data_automation/ocean_data/ocean_dashboard_data.js&quot;,
+  &quot;method&quot;: &quot;Python implementation of Hobday/heatwaveR-style marine heatwave definition&quot;,
+  &quot;heatwaveR_available&quot;: false,
+  &quot;baseline_start&quot;: 1982,
+  &quot;baseline_end&quot;: 2011,
+  &quot;threshold_percentile&quot;: 90,
+  &quot;window_half_width_days&quot;: 5,
+  &quot;min_duration_days&quot;: 5,
+  &quot;max_gap_days&quot;: 2,
+  &quot;events&quot;: 121,
+  &quot;coverage_start&quot;: &quot;1981-09-01&quot;,
+  &quot;coverage_end&quot;: &quot;2026-04-30&quot;
 }
-2026-06-10 04:22:49,325 INFO Ocean update finished with 2 dataset failures
-[main 8310b79] Update Gulf temperature storymap data
- 1 file changed, 1 insertion(+), 1 deletion(-)
-To github.com:Fabbiologia/goc-climate-change.git
-   cbf5371..8310b79  main -&gt; main
-To github.com:Fabbiologia/goc-climate-change.git
-   cbf5371..8310b79  main -&gt; gh-pages
-2026-06-10T04:22:53+01:00 published GitHub Pages update
-2026-06-10T04:22:53+01:00 GitHub Pages publish complete
-2026-06-10T04:22:53+01:00 ocean update complete</pre>
+2026-06-17 04:22:54,555 INFO Rebuilding Gulf-only dashboard data
+Wrote /ssd/data_automation/ocean_data/ocean_dashboard_data.js with 3 variables, 93 daily rows, 3 monthly rows
+Completed with 876 file errors; first error: missing file: /media/vision/SANDISK/ocean_data/raw/esa_oc/esa_oc_1997_09.nc
+2026-06-17 04:23:01,716 INFO Rebuilding temperature storymap data
+Traceback (most recent call last):
+  File &quot;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&quot;, line 321, in &lt;module&gt;
+    main()
+  File &quot;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&quot;, line 162, in main
+    latest_april = next(row for row in aprils if months[row[1]] == f&quot;{latest_year}-04&quot;)
+StopIteration
+Traceback (most recent call last):
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 60, in &lt;module&gt;
+    raise SystemExit(main())
+  File &quot;/ssd/data_automation/ocean_data/run_ocean_update.py&quot;, line 50, in main
+    subprocess.run(
+  File &quot;/usr/lib/python3.10/subprocess.py&quot;, line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command &#x27;[&#x27;/home/vision/Research/.venv/bin/python&#x27;, &#x27;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&#x27;]&#x27; returned non-zero exit status 1.</pre>
         </details>
       </section>
     
