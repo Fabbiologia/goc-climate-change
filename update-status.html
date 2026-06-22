@@ -163,7 +163,7 @@
       <div class="title-row">
         <div>
           <h1>Automated Data Update Status</h1>
-          <p>Generated 2026-06-22T03:08:50+00:00 on vision-desktop. Reason: SNIIM weekly cron wrapper.</p>
+          <p>Generated 2026-06-22T15:08:03+00:00 on vision-desktop. Reason: fixed ocean database paths after SANDISK remount.</p>
         </div>
         <span class="badge warning">WARNING</span>
       </div>
@@ -198,14 +198,13 @@
           </div>
           <div>
             <h3>Metrics</h3>
-            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
-<div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>dashboard age</dt><dd>0.0 days</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>rw at /media/vision/SANDISK</dd></div>
+<div class="kv-row"><dt>dashboard age</dt><dd>0.5 days</dd></div>
 <div class="kv-row"><dt>dashboard rows</dt><dd>5,418,342</dd></div>
 <div class="kv-row"><dt>annual rows</dt><dd>66,651</dd></div>
 <div class="kv-row"><dt>consolidated rows</dt><dd>320,600</dd></div>
 <div class="kv-row"><dt>raw DB mtime</dt><dd>2026-06-22T03:08:35.554749+00:00</dd></div>
-<div class="kv-row"><dt>research dataset age</dt><dd>0.0 days</dd></div>
+<div class="kv-row"><dt>research dataset age</dt><dd>0.5 days</dd></div>
 <div class="kv-row"><dt>monthly price series</dt><dd>143,437</dd></div>
 <div class="kv-row"><dt>deduped price records</dt><dd>1,317,622</dd></div>
 <div class="kv-row"><dt>closure covariates</dt><dd>33</dd></div>
@@ -227,113 +226,10 @@
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>SNIIM raw DB is 4.5 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.</li><li>Latest SNIIM scheduled log block contains 1 warning/error lines.</li><li>The latest wrapper run reported WARNING.</li></ul>
+            <ul class="warnings"><li>Fuel-price covariates are empty; the SNIIM price dataset is still usable.</li><li>SNIIM raw DB is 4.5 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.</li><li>Latest SNIIM scheduled log block contains 1 warning/error lines.</li></ul>
           </div>
         </div>
-        <details class="report"><summary>[WARNING] SNIIM weekly update on vision-desktop (WARNING)</summary><pre>SNIIM weekly update status
-Generated: 2026-06-22T03:08:46+00:00
-Project: /ssd/data_automation/sniim_prices
-
-Raw records: 5,418,342
-Latest raw record date: 2026-06-19
-Latest raw scraped_at: 2026-06-22T02:58:21Z
-Dashboard generated_at: 2026-06-22T03:04:52+00:00
-Dashboard records_end: 2026-06-19
-Dashboard consolidated_end: 2026-06-22
-Research DB quick_check: ok
-Research monthly_price_series rows: 143,437
-Research latest month: 2026-06
-Fuel covariate rows: 0
-Research summary generated_at: 2026-06-22T03:06:32+00:00
-
-Status: WARNING
-
-Warnings:
-- fuel covariate table is empty; SNIIM data are still usable
-- 1 warning/error lines appeared in the SNIIM update log
-
-Recent log excerpt:
-2026-06-22T03:03:23Z update consolidated Robalo 2026-05: 17 rows
-2026-06-22T03:03:24Z update consolidated Robalo 2026-06: 17 rows
-2026-06-22T03:03:25Z update consolidated Robalo chico 2026-04: 5 rows
-2026-06-22T03:03:26Z update consolidated Robalo chico 2026-05: 5 rows
-2026-06-22T03:03:27Z update consolidated Robalo chico 2026-06: 4 rows
-2026-06-22T03:03:27Z update consolidated Robalo del pacífico 2026-04: 8 rows
-2026-06-22T03:03:28Z update consolidated Robalo del pacífico 2026-05: 8 rows
-2026-06-22T03:03:29Z update consolidated Robalo del pacífico 2026-06: 8 rows
-2026-06-22T03:03:30Z update consolidated Ronco amarillo 2026-04: 2 rows
-2026-06-22T03:03:30Z update consolidated Ronco amarillo 2026-05: 2 rows
-2026-06-22T03:03:31Z update consolidated Ronco amarillo 2026-06: 2 rows
-2026-06-22T03:03:32Z update consolidated Rubia o Biajaiba 2026-04: 7 rows
-2026-06-22T03:03:33Z update consolidated Rubia o Biajaiba 2026-05: 7 rows
-2026-06-22T03:03:33Z update consolidated Rubia o Biajaiba 2026-06: 7 rows
-2026-06-22T03:03:34Z update consolidated Sardina 2026-04: 2 rows
-2026-06-22T03:03:35Z update consolidated Sardina 2026-05: 2 rows
-2026-06-22T03:03:36Z update consolidated Sardina 2026-06: 2 rows
-2026-06-22T03:03:36Z update consolidated Sargo 2026-04: 6 rows
-2026-06-22T03:03:37Z update consolidated Sargo 2026-05: 6 rows
-2026-06-22T03:03:38Z update consolidated Sargo 2026-06: 6 rows
-2026-06-22T03:03:39Z update consolidated Sierra del Golfo 2026-04: 18 rows
-2026-06-22T03:03:39Z update consolidated Sierra del Golfo 2026-05: 16 rows
-2026-06-22T03:03:40Z update consolidated Sierra del Golfo 2026-06: 17 rows
-2026-06-22T03:03:41Z update consolidated Sierra del Pacífico 2026-04: 13 rows
-2026-06-22T03:03:42Z update consolidated Sierra del Pacífico 2026-05: 13 rows
-2026-06-22T03:03:43Z update consolidated Sierra del Pacífico 2026-06: 12 rows
-2026-06-22T03:03:43Z update consolidated Tenazas de cangrejo 2026-04: 7 rows
-2026-06-22T03:03:44Z update consolidated Tenazas de cangrejo 2026-05: 7 rows
-2026-06-22T03:03:45Z update consolidated Tenazas de cangrejo 2026-06: 7 rows
-2026-06-22T03:03:46Z update consolidated Tiburon c/cabeza 2026-04: 0 rows
-2026-06-22T03:03:46Z update consolidated Tiburon c/cabeza 2026-05: 0 rows
-2026-06-22T03:03:47Z update consolidated Tiburon c/cabeza 2026-06: 0 rows
-2026-06-22T03:03:48Z update consolidated Tiburón Majarro sin cabeza 2026-04: 1 rows
-2026-06-22T03:03:49Z update consolidated Tiburón Majarro sin cabeza 2026-05: 1 rows
-2026-06-22T03:03:50Z update consolidated Tiburón Majarro sin cabeza 2026-06: 1 rows
-2026-06-22T03:03:50Z update consolidated Tiburón sin cabeza 2026-04: 4 rows
-2026-06-22T03:03:51Z update consolidated Tiburón sin cabeza 2026-05: 4 rows
-2026-06-22T03:03:52Z update consolidated Tiburón sin cabeza 2026-06: 1 rows
-2026-06-22T03:03:53Z update consolidated Tilapia chica 2026-04: 22 rows
-2026-06-22T03:03:53Z update consolidated Tilapia chica 2026-05: 21 rows
-2026-06-22T03:03:54Z update consolidated Tilapia chica 2026-06: 21 rows
-2026-06-22T03:03:55Z update consolidated Tilapia grande 2026-04: 27 rows
-2026-06-22T03:03:56Z update consolidated Tilapia grande 2026-05: 26 rows
-2026-06-22T03:03:56Z update consolidated Tilapia grande 2026-06: 26 rows
-2026-06-22T03:03:57Z update consolidated Tilapia mediana 2026-04: 20 rows
-2026-06-22T03:03:58Z update consolidated Tilapia mediana 2026-05: 19 rows
-2026-06-22T03:03:59Z update consolidated Tilapia mediana 2026-06: 19 rows
-2026-06-22T03:04:00Z update consolidated Tolete 2026-04: 0 rows
-2026-06-22T03:04:00Z update consolidated Tolete 2026-05: 0 rows
-2026-06-22T03:04:01Z update consolidated Tolete 2026-06: 0 rows
-2026-06-22T03:04:02Z update consolidated Torito 2026-04: 2 rows
-2026-06-22T03:04:03Z update consolidated Torito 2026-05: 2 rows
-2026-06-22T03:04:04Z update consolidated Torito 2026-06: 2 rows
-2026-06-22T03:04:04Z update consolidated Trucha 2026-04: 2 rows
-2026-06-22T03:04:05Z update consolidated Trucha 2026-05: 2 rows
-2026-06-22T03:04:06Z update consolidated Trucha 2026-06: 2 rows
-2026-06-22T03:04:07Z update consolidated Trucha Arcoiris 2026-04: 3 rows
-2026-06-22T03:04:07Z update consolidated Trucha Arcoiris 2026-05: 3 rows
-2026-06-22T03:04:08Z update consolidated Trucha Arcoiris 2026-06: 3 rows
-2026-06-22T03:04:09Z update consolidated Trucha marina 2026-04: 5 rows
-2026-06-22T03:04:10Z update consolidated Trucha marina 2026-05: 5 rows
-2026-06-22T03:04:10Z update consolidated Trucha marina 2026-06: 5 rows
-2026-06-22T03:04:11Z update consolidated Vaqueta 2026-04: 1 rows
-2026-06-22T03:04:12Z update consolidated Vaqueta 2026-05: 1 rows
-2026-06-22T03:04:13Z update consolidated Vaqueta 2026-06: 1 rows
-2026-06-22T03:04:13Z update consolidated Verdillo 2026-04: 2 rows
-2026-06-22T03:04:14Z update consolidated Verdillo 2026-05: 2 rows
-2026-06-22T03:04:15Z update consolidated Verdillo 2026-06: 2 rows
-2026-06-22T03:04:15Z update complete: 61236 rows, 66651 annual rows, 251 cuaresma pages, 2982 consolidated rows, 0 recoverable errors
-Wrote /ssd/data_automation/sniim_prices/dashboard_data.js with 199,720 monthly rows and 6,988 market rows
-Loaded 318 CPI months through 2026-06
-Harmonized 306 raw product labels
-Built 1,317,622 deduplicated price records and 143,437 monthly series rows
-Built inflation-corrected annual and consolidated tables
-Built Lent covariates for 2000-2027
-Loaded 33 closure rows and 131 monthly closure covariates
-Fuel terminal price covariate skipped: resource listing failed: HTTPSConnectionPool(host=&#x27;datos.gob.mx&#x27;, port=443): Max retries exceeded with url: /api/3/action/package_show?id=petroliferos (Caused by SSLError(SSLCertVerificationError(1, &#x27;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)&#x27;)))
-Wrote /ssd/data_automation/sniim_prices/sniim_research.sqlite
-Wrote /ssd/data_automation/sniim_prices/storage_status.json
-2026-06-22T04:08:46+01:00 SNIIM weekly update complete
-</pre></details>
+        
         <details>
           <summary>Latest scheduled log excerpt</summary>
           <pre>2026-06-22T03:03:23Z update consolidated Robalo 2026-05: 17 rows
@@ -432,36 +328,36 @@ Wrote /ssd/data_automation/sniim_prices/storage_status.json
         <div class="grid">
           <div>
             <h3>Latest Data</h3>
-            <dl class="kv"><div class="kv-row"><dt>ocean dashboard generated</dt><dd>2026-06-17T03:23:01+00:00</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>ocean dashboard generated</dt><dd>2026-06-22T15:07:13+00:00</dd></div>
 <div class="kv-row"><dt>SST coverage end</dt><dd>2026-05-31</dd></div>
 <div class="kv-row"><dt>SST anomaly coverage end</dt><dd>2026-05-31</dd></div>
-<div class="kv-row"><dt>temperature storymap generated</dt><dd>2026-06-10T03:22:47+00:00</dd></div>
-<div class="kv-row"><dt>storymap coverage end</dt><dd>2026-04</dd></div>
+<div class="kv-row"><dt>chlorophyll coverage end</dt><dd>2025-12-01</dd></div>
+<div class="kv-row"><dt>temperature storymap generated</dt><dd>2026-06-22T15:07:13+00:00</dd></div>
+<div class="kv-row"><dt>storymap coverage end</dt><dd>2026-05</dd></div>
 <div class="kv-row"><dt>marine heatwave coverage end</dt><dd>2026-04-30</dd></div>
-<div class="kv-row"><dt>Ocean storage status generated</dt><dd>2026-06-16T14:42:55+00:00</dd></div>
+<div class="kv-row"><dt>Ocean storage status generated</dt><dd>2026-06-22T15:06:53+00:00</dd></div>
 <div class="kv-row"><dt>latest scheduled log line</dt><dd>subprocess.CalledProcessError: Command &#x27;[&#x27;/home/vision/Research/.venv/bin/python&#x27;, &#x27;/ssd/data_automation/ocean_data/build_temperature_storymap_data.py&#x27;]&#x27; returned non-zero exit status 1.</dd></div></dl>
           </div>
           <div>
             <h3>Metrics</h3>
-            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>unknown at /media/vision/SANDISK</dd></div>
-<div class="kv-row"><dt>SANDISK archive state</dt><dd>inactive / not mounted</dd></div>
-<div class="kv-row"><dt>ocean dashboard age</dt><dd>5.0 days</dd></div>
+            <dl class="kv"><div class="kv-row"><dt>SANDISK archive mount</dt><dd>rw at /media/vision/SANDISK</dd></div>
+<div class="kv-row"><dt>ocean dashboard age</dt><dd>0.0 days</dd></div>
 <div class="kv-row"><dt>source files</dt><dd>877</dd></div>
-<div class="kv-row"><dt>daily rows</dt><dd>93</dd></div>
-<div class="kv-row"><dt>monthly rows</dt><dd>3</dd></div>
-<div class="kv-row"><dt>temperature storymap age</dt><dd>12.0 days</dd></div>
-<div class="kv-row"><dt>latest month</dt><dd>2026-04</dd></div>
-<div class="kv-row"><dt>latest SST anomaly</dt><dd>2.896</dd></div>
+<div class="kv-row"><dt>daily rows</dt><dd>49,354</dd></div>
+<div class="kv-row"><dt>monthly rows</dt><dd>1,951</dd></div>
+<div class="kv-row"><dt>temperature storymap age</dt><dd>0.0 days</dd></div>
+<div class="kv-row"><dt>latest month</dt><dd>2026-05</dd></div>
+<div class="kv-row"><dt>latest SST anomaly</dt><dd>1.518</dd></div>
 <div class="kv-row"><dt>all-time anomaly month</dt><dd>2026-04</dd></div>
 <div class="kv-row"><dt>marine heatwave events</dt><dd>121</dd></div>
 <div class="kv-row"><dt>marine heatwave generated</dt><dd>2026-06-17T03:22:54+00:00</dd></div>
-<div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-17T03:23:01.345384+00:00</dd></div>
-<div class="kv-row"><dt>temperature_storymap_data.js mtime</dt><dd>2026-06-10T03:22:48+00:00</dd></div>
+<div class="kv-row"><dt>ocean_dashboard_data.js mtime</dt><dd>2026-06-22T15:07:13.712199+00:00</dd></div>
+<div class="kv-row"><dt>temperature_storymap_data.js mtime</dt><dd>2026-06-22T15:07:34.164851+00:00</dd></div>
 <div class="kv-row"><dt>gulf_sst_mhw_metadata.json mtime</dt><dd>2026-06-17T03:22:54.417161+00:00</dd></div>
 <div class="kv-row"><dt>Ocean SQLite DB size</dt><dd>1.6 MB</dd></div>
 <div class="kv-row"><dt>Ocean SQLite DB quick_check</dt><dd>ok</dd></div>
 <div class="kv-row"><dt>Ocean Parquet exports</dt><dd>5</dd></div>
-<div class="kv-row"><dt>Ocean Parquet rows</dt><dd>17,848</dd></div>
+<div class="kv-row"><dt>Ocean Parquet rows</dt><dd>17,849</dd></div>
 <div class="kv-row"><dt>Ocean Parquet size</dt><dd>482.3 KB</dd></div></dl>
           </div>
         </div>
@@ -472,7 +368,7 @@ Wrote /ssd/data_automation/sniim_prices/storage_status.json
           </div>
           <div>
             <h3>Warnings</h3>
-            <ul class="warnings"><li>temperature storymap is 12.0 days old; expected weekly automation has not refreshed it recently.</li><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li><li>Latest ocean log block does not show GitHub Pages publish completion.</li></ul>
+            <ul class="warnings"><li>Latest ocean scheduled log block contains 6 warning/error lines.</li><li>One or more provider monthly ingests failed; published data may lag provider availability.</li><li>Latest ocean log block does not show GitHub Pages publish completion.</li></ul>
           </div>
         </div>
         

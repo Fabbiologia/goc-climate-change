@@ -9,11 +9,11 @@ window.UPDATE_STATUS_DATA = {
     "live_data_root": "/ssd/data_automation",
     "status_page": "https://fabbiologia.github.io/goc-climate-change/update-status.html"
   },
-  "generated_at": "2026-06-22T03:08:50+00:00",
+  "generated_at": "2026-06-22T15:08:03+00:00",
   "host": "vision-desktop",
   "overall_status": "WARNING",
   "page_url": "https://fabbiologia.github.io/goc-climate-change/update-status.html",
-  "reason": "SNIIM weekly cron wrapper",
+  "reason": "fixed ocean database paths after SANDISK remount",
   "remote": "git@github.com:Fabbiologia/goc-climate-change.git",
   "repo": "/home/vision/goc-climate-change",
   "systems": [
@@ -50,13 +50,7 @@ window.UPDATE_STATUS_DATA = {
           "value": "2026-06-22T04:08:46+01:00 SNIIM weekly update complete"
         }
       ],
-      "latest_event": {
-        "body": "SNIIM weekly update status\nGenerated: 2026-06-22T03:08:46+00:00\nProject: /ssd/data_automation/sniim_prices\n\nRaw records: 5,418,342\nLatest raw record date: 2026-06-19\nLatest raw scraped_at: 2026-06-22T02:58:21Z\nDashboard generated_at: 2026-06-22T03:04:52+00:00\nDashboard records_end: 2026-06-19\nDashboard consolidated_end: 2026-06-22\nResearch DB quick_check: ok\nResearch monthly_price_series rows: 143,437\nResearch latest month: 2026-06\nFuel covariate rows: 0\nResearch summary generated_at: 2026-06-22T03:06:32+00:00\n\nStatus: WARNING\n\nWarnings:\n- fuel covariate table is empty; SNIIM data are still usable\n- 1 warning/error lines appeared in the SNIIM update log\n\nRecent log excerpt:\n2026-06-22T03:03:23Z update consolidated Robalo 2026-05: 17 rows\n2026-06-22T03:03:24Z update consolidated Robalo 2026-06: 17 rows\n2026-06-22T03:03:25Z update consolidated Robalo chico 2026-04: 5 rows\n2026-06-22T03:03:26Z update consolidated Robalo chico 2026-05: 5 rows\n2026-06-22T03:03:27Z update consolidated Robalo chico 2026-06: 4 rows\n2026-06-22T03:03:27Z update consolidated Robalo del pac\u00edfico 2026-04: 8 rows\n2026-06-22T03:03:28Z update consolidated Robalo del pac\u00edfico 2026-05: 8 rows\n2026-06-22T03:03:29Z update consolidated Robalo del pac\u00edfico 2026-06: 8 rows\n2026-06-22T03:03:30Z update consolidated Ronco amarillo 2026-04: 2 rows\n2026-06-22T03:03:30Z update consolidated Ronco amarillo 2026-05: 2 rows\n2026-06-22T03:03:31Z update consolidated Ronco amarillo 2026-06: 2 rows\n2026-06-22T03:03:32Z update consolidated Rubia o Biajaiba 2026-04: 7 rows\n2026-06-22T03:03:33Z update consolidated Rubia o Biajaiba 2026-05: 7 rows\n2026-06-22T03:03:33Z update consolidated Rubia o Biajaiba 2026-06: 7 rows\n2026-06-22T03:03:34Z update consolidated Sardina 2026-04: 2 rows\n2026-06-22T03:03:35Z update consolidated Sardina 2026-05: 2 rows\n2026-06-22T03:03:36Z update consolidated Sardina 2026-06: 2 rows\n2026-06-22T03:03:36Z update consolidated Sargo 2026-04: 6 rows\n2026-06-22T03:03:37Z update consolidated Sargo 2026-05: 6 rows\n2026-06-22T03:03:38Z update consolidated Sargo 2026-06: 6 rows\n2026-06-22T03:03:39Z update consolidated Sierra del Golfo 2026-04: 18 rows\n2026-06-22T03:03:39Z update consolidated Sierra del Golfo 2026-05: 16 rows\n2026-06-22T03:03:40Z update consolidated Sierra del Golfo 2026-06: 17 rows\n2026-06-22T03:03:41Z update consolidated Sierra del Pac\u00edfico 2026-04: 13 rows\n2026-06-22T03:03:42Z update consolidated Sierra del Pac\u00edfico 2026-05: 13 rows\n2026-06-22T03:03:43Z update consolidated Sierra del Pac\u00edfico 2026-06: 12 rows\n2026-06-22T03:03:43Z update consolidated Tenazas de cangrejo 2026-04: 7 rows\n2026-06-22T03:03:44Z update consolidated Tenazas de cangrejo 2026-05: 7 rows\n2026-06-22T03:03:45Z update consolidated Tenazas de cangrejo 2026-06: 7 rows\n2026-06-22T03:03:46Z update consolidated Tiburon c/cabeza 2026-04: 0 rows\n2026-06-22T03:03:46Z update consolidated Tiburon c/cabeza 2026-05: 0 rows\n2026-06-22T03:03:47Z update consolidated Tiburon c/cabeza 2026-06: 0 rows\n2026-06-22T03:03:48Z update consolidated Tibur\u00f3n Majarro sin cabeza 2026-04: 1 rows\n2026-06-22T03:03:49Z update consolidated Tibur\u00f3n Majarro sin cabeza 2026-05: 1 rows\n2026-06-22T03:03:50Z update consolidated Tibur\u00f3n Majarro sin cabeza 2026-06: 1 rows\n2026-06-22T03:03:50Z update consolidated Tibur\u00f3n sin cabeza 2026-04: 4 rows\n2026-06-22T03:03:51Z update consolidated Tibur\u00f3n sin cabeza 2026-05: 4 rows\n2026-06-22T03:03:52Z update consolidated Tibur\u00f3n sin cabeza 2026-06: 1 rows\n2026-06-22T03:03:53Z update consolidated Tilapia chica 2026-04: 22 rows\n2026-06-22T03:03:53Z update consolidated Tilapia chica 2026-05: 21 rows\n2026-06-22T03:03:54Z update consolidated Tilapia chica 2026-06: 21 rows\n2026-06-22T03:03:55Z update consolidated Tilapia grande 2026-04: 27 rows\n2026-06-22T03:03:56Z update consolidated Tilapia grande 2026-05: 26 rows\n2026-06-22T03:03:56Z update consolidated Tilapia grande 2026-06: 26 rows\n2026-06-22T03:03:57Z update consolidated Tilapia mediana 2026-04: 20 rows\n2026-06-22T03:03:58Z update consolidated Tilapia mediana 2026-05: 19 rows\n2026-06-22T03:03:59Z update consolidated Tilapia mediana 2026-06: 19 rows\n2026-06-22T03:04:00Z update consolidated Tolete 2026-04: 0 rows\n2026-06-22T03:04:00Z update consolidated Tolete 2026-05: 0 rows\n2026-06-22T03:04:01Z update consolidated Tolete 2026-06: 0 rows\n2026-06-22T03:04:02Z update consolidated Torito 2026-04: 2 rows\n2026-06-22T03:04:03Z update consolidated Torito 2026-05: 2 rows\n2026-06-22T03:04:04Z update consolidated Torito 2026-06: 2 rows\n2026-06-22T03:04:04Z update consolidated Trucha 2026-04: 2 rows\n2026-06-22T03:04:05Z update consolidated Trucha 2026-05: 2 rows\n2026-06-22T03:04:06Z update consolidated Trucha 2026-06: 2 rows\n2026-06-22T03:04:07Z update consolidated Trucha Arcoiris 2026-04: 3 rows\n2026-06-22T03:04:07Z update consolidated Trucha Arcoiris 2026-05: 3 rows\n2026-06-22T03:04:08Z update consolidated Trucha Arcoiris 2026-06: 3 rows\n2026-06-22T03:04:09Z update consolidated Trucha marina 2026-04: 5 rows\n2026-06-22T03:04:10Z update consolidated Trucha marina 2026-05: 5 rows\n2026-06-22T03:04:10Z update consolidated Trucha marina 2026-06: 5 rows\n2026-06-22T03:04:11Z update consolidated Vaqueta 2026-04: 1 rows\n2026-06-22T03:04:12Z update consolidated Vaqueta 2026-05: 1 rows\n2026-06-22T03:04:13Z update consolidated Vaqueta 2026-06: 1 rows\n2026-06-22T03:04:13Z update consolidated Verdillo 2026-04: 2 rows\n2026-06-22T03:04:14Z update consolidated Verdillo 2026-05: 2 rows\n2026-06-22T03:04:15Z update consolidated Verdillo 2026-06: 2 rows\n2026-06-22T03:04:15Z update complete: 61236 rows, 66651 annual rows, 251 cuaresma pages, 2982 consolidated rows, 0 recoverable errors\nWrote /ssd/data_automation/sniim_prices/dashboard_data.js with 199,720 monthly rows and 6,988 market rows\nLoaded 318 CPI months through 2026-06\nHarmonized 306 raw product labels\nBuilt 1,317,622 deduplicated price records and 143,437 monthly series rows\nBuilt inflation-corrected annual and consolidated tables\nBuilt Lent covariates for 2000-2027\nLoaded 33 closure rows and 131 monthly closure covariates\nFuel terminal price covariate skipped: resource listing failed: HTTPSConnectionPool(host='datos.gob.mx', port=443): Max retries exceeded with url: /api/3/action/package_show?id=petroliferos (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)')))\nWrote /ssd/data_automation/sniim_prices/sniim_research.sqlite\nWrote /ssd/data_automation/sniim_prices/storage_status.json\n2026-06-22T04:08:46+01:00 SNIIM weekly update complete\n",
-        "captured_at": "2026-06-22T03:08:51+00:00",
-        "reason": "SNIIM weekly cron wrapper",
-        "status": "WARNING",
-        "subject": "[WARNING] SNIIM weekly update on vision-desktop"
-      },
+      "latest_event": null,
       "log_excerpt": [
         "2026-06-22T03:02:53Z update consolidated Pargo coconaco 2026-04: 5 rows",
         "2026-06-22T03:02:53Z update consolidated Pargo coconaco 2026-05: 5 rows",
@@ -182,15 +176,11 @@ window.UPDATE_STATUS_DATA = {
       "metrics": [
         {
           "label": "SANDISK archive mount",
-          "value": "unknown at /media/vision/SANDISK"
-        },
-        {
-          "label": "SANDISK archive state",
-          "value": "inactive / not mounted"
+          "value": "rw at /media/vision/SANDISK"
         },
         {
           "label": "dashboard age",
-          "value": "0.0 days"
+          "value": "0.5 days"
         },
         {
           "label": "dashboard rows",
@@ -210,7 +200,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "research dataset age",
-          "value": "0.0 days"
+          "value": "0.5 days"
         },
         {
           "label": "monthly price series",
@@ -268,8 +258,7 @@ window.UPDATE_STATUS_DATA = {
       "warnings": [
         "Fuel-price covariates are empty; the SNIIM price dataset is still usable.",
         "SNIIM raw DB is 4.5 GB; keep live storage on SSD/ext4 and avoid FAT32 archives.",
-        "Latest SNIIM scheduled log block contains 1 warning/error lines.",
-        "The latest wrapper run reported WARNING."
+        "Latest SNIIM scheduled log block contains 1 warning/error lines."
       ]
     },
     {
@@ -278,7 +267,7 @@ window.UPDATE_STATUS_DATA = {
       "latest_data": [
         {
           "label": "ocean dashboard generated",
-          "value": "2026-06-17T03:23:01+00:00"
+          "value": "2026-06-22T15:07:13+00:00"
         },
         {
           "label": "SST coverage end",
@@ -289,12 +278,16 @@ window.UPDATE_STATUS_DATA = {
           "value": "2026-05-31"
         },
         {
+          "label": "chlorophyll coverage end",
+          "value": "2025-12-01"
+        },
+        {
           "label": "temperature storymap generated",
-          "value": "2026-06-10T03:22:47+00:00"
+          "value": "2026-06-22T15:07:13+00:00"
         },
         {
           "label": "storymap coverage end",
-          "value": "2026-04"
+          "value": "2026-05"
         },
         {
           "label": "marine heatwave coverage end",
@@ -302,7 +295,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "Ocean storage status generated",
-          "value": "2026-06-16T14:42:55+00:00"
+          "value": "2026-06-22T15:06:53+00:00"
         },
         {
           "label": "latest scheduled log line",
@@ -374,15 +367,11 @@ window.UPDATE_STATUS_DATA = {
       "metrics": [
         {
           "label": "SANDISK archive mount",
-          "value": "unknown at /media/vision/SANDISK"
-        },
-        {
-          "label": "SANDISK archive state",
-          "value": "inactive / not mounted"
+          "value": "rw at /media/vision/SANDISK"
         },
         {
           "label": "ocean dashboard age",
-          "value": "5.0 days"
+          "value": "0.0 days"
         },
         {
           "label": "source files",
@@ -390,23 +379,23 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "daily rows",
-          "value": "93"
+          "value": "49,354"
         },
         {
           "label": "monthly rows",
-          "value": "3"
+          "value": "1,951"
         },
         {
           "label": "temperature storymap age",
-          "value": "12.0 days"
+          "value": "0.0 days"
         },
         {
           "label": "latest month",
-          "value": "2026-04"
+          "value": "2026-05"
         },
         {
           "label": "latest SST anomaly",
-          "value": "2.896"
+          "value": "1.518"
         },
         {
           "label": "all-time anomaly month",
@@ -422,11 +411,11 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "ocean_dashboard_data.js mtime",
-          "value": "2026-06-17T03:23:01.345384+00:00"
+          "value": "2026-06-22T15:07:13.712199+00:00"
         },
         {
           "label": "temperature_storymap_data.js mtime",
-          "value": "2026-06-10T03:22:48+00:00"
+          "value": "2026-06-22T15:07:34.164851+00:00"
         },
         {
           "label": "gulf_sst_mhw_metadata.json mtime",
@@ -446,7 +435,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "Ocean Parquet rows",
-          "value": "17,848"
+          "value": "17,849"
         },
         {
           "label": "Ocean Parquet size",
@@ -458,7 +447,6 @@ window.UPDATE_STATUS_DATA = {
       "schedule": "Wednesdays 04:22 local time",
       "status": "WARNING",
       "warnings": [
-        "temperature storymap is 12.0 days old; expected weekly automation has not refreshed it recently.",
         "Latest ocean scheduled log block contains 6 warning/error lines.",
         "One or more provider monthly ingests failed; published data may lag provider availability.",
         "Latest ocean log block does not show GitHub Pages publish completion."
