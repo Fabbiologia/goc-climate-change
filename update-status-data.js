@@ -9,11 +9,11 @@ window.UPDATE_STATUS_DATA = {
     "live_data_root": "/ssd/data_automation",
     "status_page": "https://fabbiologia.github.io/goc-climate-change/update-status.html"
   },
-  "generated_at": "2026-06-22T15:08:03+00:00",
+  "generated_at": "2026-06-24T03:22:42+00:00",
   "host": "vision-desktop",
   "overall_status": "WARNING",
   "page_url": "https://fabbiologia.github.io/goc-climate-change/update-status.html",
-  "reason": "fixed ocean database paths after SANDISK remount",
+  "reason": "Ocean/SST weekly cron wrapper",
   "remote": "git@github.com:Fabbiologia/goc-climate-change.git",
   "repo": "/home/vision/goc-climate-change",
   "systems": [
@@ -180,7 +180,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "dashboard age",
-          "value": "0.5 days"
+          "value": "2.0 days"
         },
         {
           "label": "dashboard rows",
@@ -200,7 +200,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "research dataset age",
-          "value": "0.5 days"
+          "value": "2.0 days"
         },
         {
           "label": "monthly price series",
@@ -267,7 +267,7 @@ window.UPDATE_STATUS_DATA = {
       "latest_data": [
         {
           "label": "ocean dashboard generated",
-          "value": "2026-06-22T15:07:13+00:00"
+          "value": "2026-06-24T03:22:35+00:00"
         },
         {
           "label": "SST coverage end",
@@ -283,7 +283,7 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "temperature storymap generated",
-          "value": "2026-06-22T15:07:13+00:00"
+          "value": "2026-06-24T03:22:35+00:00"
         },
         {
           "label": "storymap coverage end",
@@ -291,27 +291,31 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "marine heatwave coverage end",
-          "value": "2026-04-30"
+          "value": "2026-05-31"
         },
         {
           "label": "Ocean storage status generated",
-          "value": "2026-06-22T15:06:53+00:00"
+          "value": "2026-06-24T03:22:37+00:00"
         },
         {
           "label": "latest scheduled log line",
-          "value": "subprocess.CalledProcessError: Command '['/home/vision/Research/.venv/bin/python', '/ssd/data_automation/ocean_data/build_temperature_storymap_data.py']' returned non-zero exit status 1."
+          "value": "2026-06-24T04:22:40+01:00 ocean update complete"
         }
       ],
-      "latest_event": null,
+      "latest_event": {
+        "body": "Ocean/SST weekly update status\nGenerated: 2026-06-24T03:22:40+00:00\nProject: /ssd/data_automation/ocean_data\n\nocean_dashboard_data.js mtime: 2026-06-24T03:22:35.378433+00:00\ntemperature_storymap_data.js mtime: 2026-06-24T03:22:35.926451+00:00\ngulf_sst_mhw_metadata.json mtime: 2026-06-24T03:22:19.433923+00:00\nMHW coverage_end: 2026-05-31\nMHW events: 121\n\nStatus: WARNING\n\nWarnings:\n- one or more provider monthly ingests failed; dashboard may still have refreshed from existing data\n- tracebacks appeared in the ocean update log\n\nRecent log excerpt:\n2026-06-24T04:22:01+01:00 starting ocean update\n2026-06-24 04:22:03,280 INFO Starting monthly update for oisst\n2026-06-24 04:22:05,620 INFO No new NOAA OISST v2.1 data available up to 2026-05-01\n2026-06-24 04:22:05,620 INFO Starting monthly update for esa_oc\n2026-06-24 04:22:05,815 INFO Downloading ESA OC historical data from 2026-01 to 2026-05\n2026-06-24 04:22:08,589 ERROR Monthly update failed for esa_oc\nTraceback (most recent call last):\n  File \"/ssd/data_automation/ocean_data/run_ocean_update.py\", line 32, in main\n    pipeline.ingest_monthly_updates(dataset_keys=[dataset_key])\n  File \"/home/vision/Research/src/oceandata/pipeline.py\", line 184, in ingest_monthly_updates\n    paths = list(\n  File \"/home/vision/Research/src/oceandata/download/esa_oc.py\", line 77, in download_historical\n    yield download_month(year, month, session=session, overwrite=overwrite)\n  File \"/home/vision/Research/src/oceandata/download/esa_oc.py\", line 39, in download_month\n    return erddap.download_griddap(\n  File \"/home/vision/Research/src/oceandata/erddap.py\", line 92, in download_griddap\n    return stream_download(\n  File \"/home/vision/Research/src/oceandata/utils.py\", line 59, in stream_download\n    resp.raise_for_status()\n  File \"/home/vision/Research/.venv/lib/python3.10/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error:  for url: https://coastwatch.pfeg.noaa.gov/erddap/griddap/pmlEsaCCI60OceanColorMonthly_Lon0360.nc?chlor_a%5B(2026-01-01T00:00:00Z):1:(2026-01-01T00:00:00Z)%5D%5B(22.0):1:(32.5)%5D%5B(244.5):1:(255.0)%5D\n2026-06-24 04:22:08,596 INFO Rebuilding marine heatwave metrics\nWrote /ssd/data_automation/ocean_data/gulf_sst_marine_heatwaves.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_daily.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_monthly.csv\n{\n  \"generated_at\": \"2026-06-24T03:22:19+00:00\",\n  \"source\": \"/ssd/data_automation/ocean_data/ocean_dashboard_data.js\",\n  \"method\": \"Python implementation of Hobday/heatwaveR-style marine heatwave definition\",\n  \"heatwaveR_available\": false,\n  \"baseline_start\": 1982,\n  \"baseline_end\": 2011,\n  \"threshold_percentile\": 90,\n  \"window_half_width_days\": 5,\n  \"min_duration_days\": 5,\n  \"max_gap_days\": 2,\n  \"events\": 121,\n  \"coverage_start\": \"1981-09-01\",\n  \"coverage_end\": \"2026-05-31\"\n}\n2026-06-24 04:22:19,572 INFO Rebuilding Gulf-only dashboard data\nWrote /ssd/data_automation/ocean_data/ocean_dashboard_data.js with 4 variables, 49354 daily rows, 1951 monthly rows\n2026-06-24 04:22:35,652 INFO Rebuilding temperature storymap data\nWrote /ssd/data_automation/ocean_data/temperature_storymap_data.js\n{\n  \"latest_month\": \"2026-05\",\n  \"latest_observed\": 24.931,\n  \"latest_anomaly\": 1.518,\n  \"latest_climatology\": 23.413,\n  \"april_rank\": 45,\n  \"april_count\": 45,\n  \"previous_april_record_month\": \"2015-04\",\n  \"previous_april_record\": 23.083,\n  \"last_el_nino_label\": \"2023-24 El Ni\\u00f1o\",\n  \"last_el_nino_peak_month\": \"2023-08\",\n  \"last_el_nino_peak_observed\": 30.285,\n  \"last_el_nino_peak_anomaly_month\": \"2024-02\",\n  \"last_el_nino_peak_anomaly\": 1.402,\n  \"strong_el_nino_label\": \"2015-16 El Ni\\u00f1o\",\n  \"strong_el_nino_peak_month\": \"2015-09\",\n  \"strong_el_nino_peak_observed\": 31.24,\n  \"all_time_peak_month\": \"2015-09\",\n  \"all_time_peak_observed\": 31.24,\n  \"all_time_peak_anomaly_month\": \"2026-04\",\n  \"all_time_peak_anomaly\": 2.896,\n  \"slope_all_per_decade\": 0.253,\n  \"slope_since_2016_per_decade\": 0.036,\n  \"median_april_to_peak_increase\": 8.863,\n  \"q25_april_to_peak_increase\": 8.786,\n  \"q75_april_to_peak_increase\": 9.231,\n  \"projected_peak\": 32.863,\n  \"projected_low\": 32.786,\n  \"projected_high\": 33.231,\n  \"projected_vs_last_el_nino\": 2.578,\n  \"projected_vs_2015_16\": 1.623\n}\n2026-06-24 04:22:35,959 INFO Ocean update finished with 1 dataset failures\nWrote /ssd/data_automation/ocean_data/storage_status.json\n2026-06-24T04:22:37+01:00 ocean storage maintenance complete\n[main 095ce71] Update Gulf temperature storymap data\n 1 file changed, 1 insertion(+), 1 deletion(-)\nTo github.com:Fabbiologia/goc-climate-change.git\n   ab0dc7a..095ce71  main -> main\nTo github.com:Fabbiologia/goc-climate-change.git\n   ab0dc7a..095ce71  main -> gh-pages\n2026-06-24T04:22:40+01:00 published GitHub Pages update\n2026-06-24T04:22:40+01:00 GitHub Pages publish complete\n2026-06-24T04:22:40+01:00 ocean update complete\n",
+        "captured_at": "2026-06-24T03:22:43+00:00",
+        "reason": "Ocean/SST weekly cron wrapper",
+        "status": "WARNING",
+        "subject": "[WARNING] Ocean/SST weekly update on vision-desktop"
+      },
       "log_excerpt": [
-        "2026-06-17T04:22:02+01:00 starting ocean update",
-        "2026-06-17 04:22:06,423 INFO Starting monthly update for oisst",
-        "2026-06-17 04:22:08,814 INFO Downloading OISST historical data from 2026-05 to 2026-05",
-        "2026-06-17 04:22:40,723 INFO Downloaded /ssd/data_automation/ocean_data/raw/oisst/oisst_2026_05.nc",
-        "2026-06-17 04:22:40,768 INFO Ingested 1 new NOAA OISST v2.1 products up to 2026-05",
-        "2026-06-17 04:22:40,768 INFO Starting monthly update for esa_oc",
-        "2026-06-17 04:22:40,982 INFO Downloading ESA OC historical data from 2026-01 to 2026-05",
-        "2026-06-17 04:22:43,596 ERROR Monthly update failed for esa_oc",
+        "2026-06-24T04:22:01+01:00 starting ocean update",
+        "2026-06-24 04:22:03,280 INFO Starting monthly update for oisst",
+        "2026-06-24 04:22:05,620 INFO No new NOAA OISST v2.1 data available up to 2026-05-01",
+        "2026-06-24 04:22:05,620 INFO Starting monthly update for esa_oc",
+        "2026-06-24 04:22:05,815 INFO Downloading ESA OC historical data from 2026-01 to 2026-05",
+        "2026-06-24 04:22:08,589 ERROR Monthly update failed for esa_oc",
         "Traceback (most recent call last):",
         "  File \"/ssd/data_automation/ocean_data/run_ocean_update.py\", line 32, in main",
         "    pipeline.ingest_monthly_updates(dataset_keys=[dataset_key])",
@@ -328,10 +332,10 @@ window.UPDATE_STATUS_DATA = {
         "  File \"/home/vision/Research/.venv/lib/python3.10/site-packages/requests/models.py\", line 1026, in raise_for_status",
         "    raise HTTPError(http_error_msg, response=self)",
         "requests.exceptions.HTTPError: 404 Client Error:  for url: https://coastwatch.pfeg.noaa.gov/erddap/griddap/pmlEsaCCI60OceanColorMonthly_Lon0360.nc?chlor_a%5B(2026-01-01T00:00:00Z):1:(2026-01-01T00:00:00Z)%5D%5B(22.0):1:(32.5)%5D%5B(244.5):1:(255.0)%5D",
-        "2026-06-17 04:22:43,603 INFO Rebuilding marine heatwave metrics",
+        "2026-06-24 04:22:08,596 INFO Rebuilding marine heatwave metrics",
         "Wrote /ssd/data_automation/ocean_data/gulf_sst_marine_heatwaves.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_daily.csv, /ssd/data_automation/ocean_data/gulf_sst_mhw_monthly.csv",
         "{",
-        "  \"generated_at\": \"2026-06-17T03:22:54+00:00\",",
+        "  \"generated_at\": \"2026-06-24T03:22:19+00:00\",",
         "  \"source\": \"/ssd/data_automation/ocean_data/ocean_dashboard_data.js\",",
         "  \"method\": \"Python implementation of Hobday/heatwaveR-style marine heatwave definition\",",
         "  \"heatwaveR_available\": false,",
@@ -343,26 +347,56 @@ window.UPDATE_STATUS_DATA = {
         "  \"max_gap_days\": 2,",
         "  \"events\": 121,",
         "  \"coverage_start\": \"1981-09-01\",",
-        "  \"coverage_end\": \"2026-04-30\"",
+        "  \"coverage_end\": \"2026-05-31\"",
         "}",
-        "2026-06-17 04:22:54,555 INFO Rebuilding Gulf-only dashboard data",
-        "Wrote /ssd/data_automation/ocean_data/ocean_dashboard_data.js with 3 variables, 93 daily rows, 3 monthly rows",
-        "Completed with 876 file errors; first error: missing file: /media/vision/SANDISK/ocean_data/raw/esa_oc/esa_oc_1997_09.nc",
-        "2026-06-17 04:23:01,716 INFO Rebuilding temperature storymap data",
-        "Traceback (most recent call last):",
-        "  File \"/ssd/data_automation/ocean_data/build_temperature_storymap_data.py\", line 321, in <module>",
-        "    main()",
-        "  File \"/ssd/data_automation/ocean_data/build_temperature_storymap_data.py\", line 162, in main",
-        "    latest_april = next(row for row in aprils if months[row[1]] == f\"{latest_year}-04\")",
-        "StopIteration",
-        "Traceback (most recent call last):",
-        "  File \"/ssd/data_automation/ocean_data/run_ocean_update.py\", line 60, in <module>",
-        "    raise SystemExit(main())",
-        "  File \"/ssd/data_automation/ocean_data/run_ocean_update.py\", line 50, in main",
-        "    subprocess.run(",
-        "  File \"/usr/lib/python3.10/subprocess.py\", line 526, in run",
-        "    raise CalledProcessError(retcode, process.args,",
-        "subprocess.CalledProcessError: Command '['/home/vision/Research/.venv/bin/python', '/ssd/data_automation/ocean_data/build_temperature_storymap_data.py']' returned non-zero exit status 1."
+        "2026-06-24 04:22:19,572 INFO Rebuilding Gulf-only dashboard data",
+        "Wrote /ssd/data_automation/ocean_data/ocean_dashboard_data.js with 4 variables, 49354 daily rows, 1951 monthly rows",
+        "2026-06-24 04:22:35,652 INFO Rebuilding temperature storymap data",
+        "Wrote /ssd/data_automation/ocean_data/temperature_storymap_data.js",
+        "{",
+        "  \"latest_month\": \"2026-05\",",
+        "  \"latest_observed\": 24.931,",
+        "  \"latest_anomaly\": 1.518,",
+        "  \"latest_climatology\": 23.413,",
+        "  \"april_rank\": 45,",
+        "  \"april_count\": 45,",
+        "  \"previous_april_record_month\": \"2015-04\",",
+        "  \"previous_april_record\": 23.083,",
+        "  \"last_el_nino_label\": \"2023-24 El Ni\\u00f1o\",",
+        "  \"last_el_nino_peak_month\": \"2023-08\",",
+        "  \"last_el_nino_peak_observed\": 30.285,",
+        "  \"last_el_nino_peak_anomaly_month\": \"2024-02\",",
+        "  \"last_el_nino_peak_anomaly\": 1.402,",
+        "  \"strong_el_nino_label\": \"2015-16 El Ni\\u00f1o\",",
+        "  \"strong_el_nino_peak_month\": \"2015-09\",",
+        "  \"strong_el_nino_peak_observed\": 31.24,",
+        "  \"all_time_peak_month\": \"2015-09\",",
+        "  \"all_time_peak_observed\": 31.24,",
+        "  \"all_time_peak_anomaly_month\": \"2026-04\",",
+        "  \"all_time_peak_anomaly\": 2.896,",
+        "  \"slope_all_per_decade\": 0.253,",
+        "  \"slope_since_2016_per_decade\": 0.036,",
+        "  \"median_april_to_peak_increase\": 8.863,",
+        "  \"q25_april_to_peak_increase\": 8.786,",
+        "  \"q75_april_to_peak_increase\": 9.231,",
+        "  \"projected_peak\": 32.863,",
+        "  \"projected_low\": 32.786,",
+        "  \"projected_high\": 33.231,",
+        "  \"projected_vs_last_el_nino\": 2.578,",
+        "  \"projected_vs_2015_16\": 1.623",
+        "}",
+        "2026-06-24 04:22:35,959 INFO Ocean update finished with 1 dataset failures",
+        "Wrote /ssd/data_automation/ocean_data/storage_status.json",
+        "2026-06-24T04:22:37+01:00 ocean storage maintenance complete",
+        "[main 095ce71] Update Gulf temperature storymap data",
+        " 1 file changed, 1 insertion(+), 1 deletion(-)",
+        "To github.com:Fabbiologia/goc-climate-change.git",
+        "   ab0dc7a..095ce71  main -> main",
+        "To github.com:Fabbiologia/goc-climate-change.git",
+        "   ab0dc7a..095ce71  main -> gh-pages",
+        "2026-06-24T04:22:40+01:00 published GitHub Pages update",
+        "2026-06-24T04:22:40+01:00 GitHub Pages publish complete",
+        "2026-06-24T04:22:40+01:00 ocean update complete"
       ],
       "metrics": [
         {
@@ -407,19 +441,19 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "marine heatwave generated",
-          "value": "2026-06-17T03:22:54+00:00"
+          "value": "2026-06-24T03:22:19+00:00"
         },
         {
           "label": "ocean_dashboard_data.js mtime",
-          "value": "2026-06-22T15:07:13.712199+00:00"
+          "value": "2026-06-24T03:22:35.378433+00:00"
         },
         {
           "label": "temperature_storymap_data.js mtime",
-          "value": "2026-06-22T15:07:34.164851+00:00"
+          "value": "2026-06-24T03:22:35.926451+00:00"
         },
         {
           "label": "gulf_sst_mhw_metadata.json mtime",
-          "value": "2026-06-17T03:22:54.417161+00:00"
+          "value": "2026-06-24T03:22:19.433923+00:00"
         },
         {
           "label": "Ocean SQLite DB size",
@@ -435,11 +469,11 @@ window.UPDATE_STATUS_DATA = {
         },
         {
           "label": "Ocean Parquet rows",
-          "value": "17,849"
+          "value": "17,881"
         },
         {
           "label": "Ocean Parquet size",
-          "value": "482.3 KB"
+          "value": "483.5 KB"
         }
       ],
       "name": "Ocean/SST dashboard",
@@ -447,9 +481,9 @@ window.UPDATE_STATUS_DATA = {
       "schedule": "Wednesdays 04:22 local time",
       "status": "WARNING",
       "warnings": [
-        "Latest ocean scheduled log block contains 6 warning/error lines.",
+        "Latest ocean scheduled log block contains 3 warning/error lines.",
         "One or more provider monthly ingests failed; published data may lag provider availability.",
-        "Latest ocean log block does not show GitHub Pages publish completion."
+        "The latest wrapper run reported WARNING."
       ]
     }
   ]
